@@ -143,18 +143,18 @@ class _BottomNavigationScreenState extends State<BottomNavigationScreen> {
         backgroundColor: Colors.transparent,
         color: Colorconstant.pantonemessage,
         items: <Widget>[
-          Icon(
-            Icons.home,
+          ImageIcon(
+            AssetImage(
+              "assets/images/CyberHULK Logo final small.png",
+            ),
             size: 30,
           ),
           Icon(
             Icons.search,
             size: 30,
           ),
-          ImageIcon(
-            const AssetImage(
-              "assets/images/Animation - 1717225115801 (1).gif",
-            ),
+          Icon(
+            Icons.info,
             size: 30,
           ),
           ImageIcon(
