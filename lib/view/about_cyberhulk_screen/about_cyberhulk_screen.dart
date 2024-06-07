@@ -56,8 +56,8 @@ class _AboutCyberHulkScreenState extends State<AboutCyberHulkScreen>
   }
 
   @override
-  void dispose() {
-    _controller.dispose();
+  dispose() {
+    _controller.dispose(); // you need this
     super.dispose();
   }
 

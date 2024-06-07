@@ -1,3 +1,4 @@
+import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:cyber_hulk/utilis/color_constant/color_constant.dart';
 import 'package:cyber_hulk/utilis/theme_swich/theme_switch.dart';
 import 'package:cyber_hulk/view/about_avanzo_screen/about_avanzo_screen.dart';
@@ -54,7 +55,80 @@ class _BottomNavigationScreenState extends State<BottomNavigationScreen> {
         ],
       ),
       body: indexnum == 2 ? Container() : screens[indexnum],
-      bottomNavigationBar: BottomNavigationBar(
+      // bottomNavigationBar: BottomNavigationBar(
+      // onTap: (value) {
+      //   // if (value == 2) {
+      //   //   _launchUrl();
+      //   // } else {
+      //   setState(() {
+      //     indexnum = value;
+      //   });
+      //   // }
+      // },
+      // currentIndex: indexnum,
+      //   unselectedItemColor: Colorconstant.mainwhite,
+      //   selectedItemColor: Colorconstant.pantonemessage,
+      //   backgroundColor: Colorconstant.mainblack,
+      //   type: BottomNavigationBarType.fixed,
+      //   items: [
+      //     const BottomNavigationBarItem(
+      //         icon: Icon(
+      //           Icons.home,
+      //           size: 20,
+      //         ),
+      //         label: "Home"),
+      //     const BottomNavigationBarItem(
+      //         icon: Icon(
+      //           Icons.search,
+      //           size: 20,
+      //         ),
+      //         label: "Ask Question"),
+      //     // -----------------------------------------------------
+      //     // const BottomNavigationBarItem(
+      //     //     icon: ImageIcon(
+      //     //       const AssetImage(
+      //     //         "assets/images/Animation - 1717225115801 (1).gif",
+      //     //       ),
+      //     //       size: 40,
+      //     //     ),
+      //     //     label: "News"),
+      //     // ---------------------
+      //     const BottomNavigationBarItem(
+      //         icon:
+      // ImageIcon(
+      //           AssetImage(
+      //             "assets/images/CyberHULK Logo final small.png",
+      //           ),
+      //           size: 20,
+      //         ),
+      //         label: "Cyberhulk"),
+      //     const BottomNavigationBarItem(
+      //         icon:
+      // ImageIcon(
+      //           AssetImage(
+      //             "assets/images/avzlogo.png",
+      //           ),
+      //           size: 20,
+      //         ),
+      //         label: "Avanzo"),
+      //   ],
+      // ),
+
+      // floatingActionButton: FloatingActionButton(
+      //   onPressed: () {
+      //     Navigator.push(
+      //         context,
+      //         MaterialPageRoute(
+      //           builder: (context) => NewsScreen(),
+      //         ));
+      //   },
+      //   shape: RoundedRectangleBorder(
+      //     borderRadius: BorderRadius.circular(20),
+      //   ),
+      //   mini: true,
+      // ),
+      // floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+      bottomNavigationBar: CurvedNavigationBar(
         onTap: (value) {
           if (value == 2) {
             _launchUrl();
@@ -64,48 +138,37 @@ class _BottomNavigationScreenState extends State<BottomNavigationScreen> {
             });
           }
         },
-        currentIndex: indexnum,
-        unselectedItemColor: Colorconstant.mainwhite,
-        selectedItemColor: Colorconstant.pantonemessage,
-        backgroundColor: Colorconstant.mainblack,
-        type: BottomNavigationBarType.fixed,
-        items: [
-          const BottomNavigationBarItem(
-              icon: Icon(
-                Icons.home,
-                size: 20,
-              ),
-              label: "Home"),
-          const BottomNavigationBarItem(
-              icon: Icon(
-                Icons.search,
-                size: 20,
-              ),
-              label: "Ask Question"),
-          const BottomNavigationBarItem(
-              icon: ImageIcon(
-                const AssetImage(
-                  "assets/images/Animation - 1717225115801 (1).gif",
-                ),
-                size: 40,
-              ),
-              label: "News"),
-          const BottomNavigationBarItem(
-              icon: ImageIcon(
-                AssetImage(
-                  "assets/images/CyberHULK Logo final small.png",
-                ),
-                size: 20,
-              ),
-              label: "Cyberhulk"),
-          const BottomNavigationBarItem(
-              icon: ImageIcon(
-                AssetImage(
-                  "assets/images/avzlogo.png",
-                ),
-                size: 20,
-              ),
-              label: "Avanzo"),
+        letIndexChange: (index) => true,
+        index: indexnum,
+        backgroundColor: Colors.transparent,
+        color: Colorconstant.pantonemessage,
+        items: <Widget>[
+          Icon(
+            Icons.home,
+            size: 30,
+          ),
+          Icon(
+            Icons.search,
+            size: 30,
+          ),
+          ImageIcon(
+            const AssetImage(
+              "assets/images/Animation - 1717225115801 (1).gif",
+            ),
+            size: 30,
+          ),
+          ImageIcon(
+            AssetImage(
+              "assets/images/CyberHULK Logo final small.png",
+            ),
+            size: 30,
+          ),
+          ImageIcon(
+            AssetImage(
+              "assets/images/avzlogo.png",
+            ),
+            size: 30,
+          ),
         ],
       ),
     );

@@ -18,6 +18,7 @@ class _AboutAvanzoScreenState extends State<AboutAvanzoScreen>
   int _phone = 08129771111;
   final String _text1 =
       "In today’s digital data driven economy, when brands are moulded with process automation, ‘Data protection’ is of paramount importance. Avanzo now offers consultancy in Formulating security policies for corporates, Intellectual property rights (IPR) in cyberspace, Cyber forensics, Cyber Legal Audit & IS Audit for organisations and Security Audit as per ISO standards. Cyber investigation for governments and Case presentation in front of adjudication officers (India, Arbitration).";
+
   @override
   void initState() {
     super.initState();
@@ -33,6 +34,13 @@ class _AboutAvanzoScreenState extends State<AboutAvanzoScreen>
     ).animate(_controller);
 
     _controller.forward();
+  }
+
+  @override
+  void dispose() {
+    // Dispose of the AnimationController before calling super.dispose()
+    _controller.dispose();
+    super.dispose();
   }
 
   Future<void> sendMailto({
@@ -71,8 +79,6 @@ class _AboutAvanzoScreenState extends State<AboutAvanzoScreen>
     final Uri toLaunch = Uri(scheme: 'https', host: 'avanzo.in');
     return Scaffold(
       body: Column(
-        //  crossAxisAlignment: CrossAxisAlignment.start,
-        // mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           SizedBox(height: 30),
           Center(
@@ -112,18 +118,12 @@ class _AboutAvanzoScreenState extends State<AboutAvanzoScreen>
                 );
               },
             ),
-            //   Text(
-            //   _text1,
-            //   textAlign: TextAlign.justify,
-            // ),
           ),
-          // Spacer(),
           Text("Connect us through,"),
           SizedBox(
             height: 10,
           ),
           Row(
-            //  crossAxisAlignment: CrossAxisAlignment.center,
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             mainAxisSize: MainAxisSize.min,
             children: [
@@ -135,7 +135,6 @@ class _AboutAvanzoScreenState extends State<AboutAvanzoScreen>
                   height: 30,
                   width: 30,
                   decoration: BoxDecoration(
-                    // borderRadius: BorderRadius.circular(15)
                     image: DecorationImage(
                       image: AssetImage("assets/images/gmail (1).png"),
                     ),
@@ -152,14 +151,14 @@ class _AboutAvanzoScreenState extends State<AboutAvanzoScreen>
                 child: Container(
                   height: 30,
                   width: 30,
-                  decoration: BoxDecoration(
-                      // color: Colorconstant.pantonebackground,
-                      // borderRadius: BorderRadius.circular(15)
-                      ),
                   child: Image.asset(
                     "assets/images/web.png",
                     scale: .7,
                   ),
+                  // decoration: BoxDecoration(
+                  // //  image: DecorationImage(image: AssetImage("assets/images/web.png")),
+
+                  // ),
                 ),
               ),
               SizedBox(
@@ -177,8 +176,6 @@ class _AboutAvanzoScreenState extends State<AboutAvanzoScreen>
                         image: AssetImage(
                       "assets/images/telephone.png",
                     )),
-                    // color: Colorconstant.pantonebackground,
-                    // borderRadius: BorderRadius.circular(15)
                   ),
                 ),
               ),
