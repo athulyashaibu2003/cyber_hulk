@@ -1,7 +1,7 @@
 import 'package:cyber_hulk/controller/Fogrot_password/forgot_password.dart';
 import 'package:cyber_hulk/utilis/Authentication.dart';
 import 'package:cyber_hulk/utilis/color_constant/color_constant.dart';
-import 'package:cyber_hulk/view/bottom_navigationbar_screens/bottom_navigation_screeb.dart';
+import 'package:cyber_hulk/view/bottom_navigationbar_screens/bottom_navigation_screen.dart';
 import 'package:cyber_hulk/view/signup_screen/signup_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:hive/hive.dart';
