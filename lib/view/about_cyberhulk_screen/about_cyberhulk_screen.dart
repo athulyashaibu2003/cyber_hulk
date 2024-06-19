@@ -23,12 +23,19 @@ class _AboutCyberHulkScreenState extends State<AboutCyberHulkScreen>
       "     CyberHulk is a free informative APP developed by Avanzo Cyber Security Solutions, its prime motive is to spread knowledge and aware the peoples about the usage and functionalities of cyber security. In today’s modern world, the usage of cyber space is indefinable, so the hidden pitfalls are enormous. To help the people who in need the support can use our CyberHulk as much as they need. Its user-friendly appearance is easy to understand and provides meaningful answers in a simplified manner. ";
   final String _text2 =
       "              The limitation is your thought, any questions related to the cyber world can be accessed through CyberHulk. Primarily CyberHulk ideas limited under Indian Jurisdiction but on coming updates you can change your region and access full support related to that region. CyberHulk will be an informative buddy so you will not be unaware about our cyber laws. However, the APP will not be responsible for any direct or indirect damages caused without proper usage of the APP CyberHulk is not just an informative App also a final solution, our app can be used to contact cyber security support and you can communicate with professionals and find solution without any sweat.  In the future the support provided by CyberHulk will be limitless, our chat buddy will be your friend who in need. We assure you our CyberHulk will be the only solution for your cyber related problems and in the future a well known and educated generation will be born and recreate the world. ";
+  Color textColor = ColorConstant.mainblack;
+  void colorFunction() {
+    if (Provider.of<ThemeProvider>(context).themeMode == ThemeMode.light) {
+      textColor = ColorConstant.mainblack;
+    } else {
+      textColor = ColorConstant.mainwhite;
+    }
+  }
 
   @override
   void initState() {
     super.initState();
     createOpenBox();
-
     // Typewriter effect initialization
     _controller = AnimationController(
       duration: const Duration(seconds: 50),
@@ -65,6 +72,8 @@ class _AboutCyberHulkScreenState extends State<AboutCyberHulkScreen>
   Widget build(BuildContext context) {
     final themeProvider = Provider.of<ThemeProvider>(context);
 
+    Size size = MediaQuery.sizeOf(context);
+
     return Scaffold(
       // appBar: AppBar(
       //   title: Text("CyberHulk"),
@@ -72,16 +81,30 @@ class _AboutCyberHulkScreenState extends State<AboutCyberHulkScreen>
       // ),
       body: SingleChildScrollView(
         child: Padding(
-          padding: const EdgeInsets.all(20),
+          padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 5),
           child: Column(
             children: [
-              Image.asset(
-                  themeProvider.themeMode == ThemeMode.dark
-                      ? "assets/images/CyberHULK Logo final-07.png"
-                      : "assets/images/CyberHULK Logo final-06.png",
-                  fit: BoxFit.fitHeight,
-                  height: 150),
-              SizedBox(height: 10),
+              Center(
+                child: Container(
+                  height: size.height * 0.25,
+                  width: size.width * 0.5,
+                  decoration: BoxDecoration(
+                      image: DecorationImage(
+                          image: AssetImage(
+                            "assets/images/CH green final.png",
+                          ),
+                          fit: BoxFit.fitWidth)),
+                  // child: Image.asset(
+                  //     // themeProvider.themeMode == ThemeMode.dark
+                  //     //     ? "assets/images/CyberHULK Logo final-07.png"
+                  //     //     : "assets/images/CyberHULK Logo final-06.png",
+                  //     "assets/images/Artboard 3_PURPLE.png",
+                  //     fit: BoxFit.fitHeight,
+                  //     height: 150),
+                ),
+              ),
+
+              // SizedBox(height: 10),
               AnimatedBuilder(
                 animation: _typewriterAnimation,
                 builder: (context, child) {
@@ -95,9 +118,9 @@ class _AboutCyberHulkScreenState extends State<AboutCyberHulkScreen>
                     textToShow,
                     textAlign: TextAlign.justify,
                     style: TextStyle(
-                        color: themeProvider.themeMode == ThemeMode.light
-                            ? Colorconstant.mainblack
-                            : Colorconstant.mainwhite,
+                        color: themeProvider.themeMode == ThemeMode.dark
+                            ? textColor = ColorConstant.mainwhite
+                            : textColor = ColorConstant.mainblack,
                         fontSize: 16.0),
                   );
                 },
@@ -112,7 +135,7 @@ class _AboutCyberHulkScreenState extends State<AboutCyberHulkScreen>
                   style: TextStyle(
                       fontWeight: FontWeight.bold,
                       fontSize: 18,
-                      color: Colorconstant.darkpurple),
+                      color: ColorConstant.darkpurple),
                 ),
               ),
               SizedBox(
@@ -120,14 +143,14 @@ class _AboutCyberHulkScreenState extends State<AboutCyberHulkScreen>
               ),
               OutlinedButton(
                 style: ButtonStyle(
-                  side: MaterialStateProperty.all(
-                    BorderSide(color: Colorconstant.darkpurple),
+                  side: WidgetStateProperty.all(
+                    BorderSide(color: ColorConstant.darkpurple),
                   ),
                 ),
                 onPressed: logout,
                 child: Text(
                   "Logout",
-                  style: TextStyle(color: Colorconstant.darkpurple),
+                  style: TextStyle(color: ColorConstant.darkpurple),
                 ),
               )
             ],

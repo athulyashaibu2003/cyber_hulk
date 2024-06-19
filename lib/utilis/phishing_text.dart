@@ -18,10 +18,7 @@ class _PhishingTextState extends State<PhishingText> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text("Phishing"),
-        centerTitle: true,
-      ),
+
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [

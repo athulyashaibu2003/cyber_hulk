@@ -79,7 +79,7 @@ class _HomeScreenState extends State<HomeScreen> {
     ];
 
     return Scaffold(
-      backgroundColor: Colorconstant.mainwhite,
+      backgroundColor: ColorConstant.mainwhite,
       body: Padding(
         padding: const EdgeInsets.all(10.0),
         child: SingleChildScrollView(
@@ -90,7 +90,7 @@ class _HomeScreenState extends State<HomeScreen> {
               Text(
                 "Interested Topics",
                 style: TextStyle(
-                    color: Colorconstant.mainblack,
+                    color: ColorConstant.mainblack,
                     fontSize: 25,
                     fontWeight: FontWeight.bold),
               ),
@@ -130,7 +130,7 @@ class _HomeScreenState extends State<HomeScreen> {
               SizedBox(height: 25),
               Row(
                 children: [
-                  Image.asset("assets/images/Animation - 1717674683787.gif"),
+                  // Image.asset("assets/images/Animation - 1717674683787.gif"),
                   Text(
                     "Cyber Tips",
                     style: TextStyle(

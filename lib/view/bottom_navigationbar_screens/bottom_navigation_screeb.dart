@@ -1,12 +1,14 @@
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
+import 'package:cyber_hulk/main.dart';
 import 'package:cyber_hulk/utilis/color_constant/color_constant.dart';
 import 'package:cyber_hulk/utilis/theme_swich/theme_switch.dart';
 import 'package:cyber_hulk/view/about_avanzo_screen/about_avanzo_screen.dart';
 import 'package:cyber_hulk/view/about_cyberhulk_screen/about_cyberhulk_screen.dart';
 import 'package:cyber_hulk/view/dashborad_screen/dashboard_screen.dart';
-import 'package:cyber_hulk/view/home_screen/home_screen.dart';
+import 'package:cyber_hulk/view/intresting_page.dart/intresting_page.dart';
 import 'package:cyber_hulk/view/news_screen/news_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class BottomNavigationScreen extends StatefulWidget {
@@ -20,7 +22,7 @@ class _BottomNavigationScreenState extends State<BottomNavigationScreen> {
   int indexnum = 0;
 
   List screens = [
-    const HomeScreen(),
+    const InterestingPage(),
     const DashboardScreen(),
     const NewsScreen(),
     const AboutCyberHulkScreen(),
@@ -37,23 +39,32 @@ class _BottomNavigationScreenState extends State<BottomNavigationScreen> {
   }
 
   @override
+  void initState() {
+    super.initState();
+    Provider.of<ThemeProvider>(context, listen: false)
+        .toggleTheme(ThemeMode.system == ThemeMode.dark);
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       // backgroundColor: Colorconstant.mainwhite,
-      appBar: AppBar(
-        backgroundColor: Colorconstant.pantonemessage,
-        toolbarHeight: 68,
-        actions: [
-          const Text(
-            "Version 1.0.0",
-            style: TextStyle(color: Colorconstant.mainblack),
-          ),
-          ThemeSwitch(),
-          const SizedBox(
-            width: 15,
-          )
-        ],
-      ),
+      appBar: indexnum == 4
+          ? null
+          : AppBar(
+              backgroundColor: ColorConstant.pantonemessage,
+              toolbarHeight: 68,
+              actions: [
+                const Text(
+                  "Version 1.0.0",
+                  style: TextStyle(color: ColorConstant.mainblack),
+                ),
+                ThemeSwitch(),
+                const SizedBox(
+                  width: 15,
+                )
+              ],
+            ),
       body: indexnum == 2 ? Container() : screens[indexnum],
       // bottomNavigationBar: BottomNavigationBar(
       // onTap: (value) {
@@ -141,7 +152,7 @@ class _BottomNavigationScreenState extends State<BottomNavigationScreen> {
         letIndexChange: (index) => true,
         index: indexnum,
         backgroundColor: Colors.transparent,
-        color: Colorconstant.pantonemessage,
+        color: ColorConstant.pantonemessage,
         items: <Widget>[
           Icon(
             Icons.home,
@@ -151,23 +162,24 @@ class _BottomNavigationScreenState extends State<BottomNavigationScreen> {
             Icons.search,
             size: 30,
           ),
+          // ImageIcon(
+          //   const AssetImage(
+          //     "assets/images/Animation - 1717225115801 (1).gif",
+          //   ),
+          //   size: 50,
+          // ),
+          Icon(Icons.newspaper_sharp),
           ImageIcon(
-            const AssetImage(
-              "assets/images/Animation - 1717225115801 (1).gif",
+            AssetImage(
+              "assets/images/CyberHULK Logo final-06.png",
             ),
-            size: 30,
+            size: 50,
           ),
           ImageIcon(
             AssetImage(
-              "assets/images/CyberHULK Logo final small.png",
+              "assets/images/avzlogo copy.png",
             ),
-            size: 30,
-          ),
-          ImageIcon(
-            AssetImage(
-              "assets/images/avzlogo.png",
-            ),
-            size: 30,
+            size: 40,
           ),
         ],
       ),

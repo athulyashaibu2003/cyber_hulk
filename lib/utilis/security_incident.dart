@@ -17,10 +17,7 @@ class _SecurityincidenttextState extends State<Securityincidenttext> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text("Security Incident"),
-        centerTitle: true,
-      ),
+     
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [

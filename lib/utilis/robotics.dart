@@ -17,10 +17,7 @@ class _RoboticstextState extends State<Roboticstext> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text("Robotics"),
-        centerTitle: true,
-      ),
+      
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [

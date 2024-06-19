@@ -17,10 +17,7 @@ class _DatabreachState extends State<Databreach> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text("Data Breach"),
-        centerTitle: true,
-      ),
+      
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [

@@ -90,11 +90,11 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
-        backgroundColor: Colorconstant.pantonebackground,
+        backgroundColor: ColorConstant.pantonebackground,
         title: Text(
           "Forgot Password",
           style: TextStyle(
-              fontWeight: FontWeight.bold, color: Colorconstant.darkpurple),
+              fontWeight: FontWeight.bold, color: ColorConstant.darkpurple),
         ),
       ),
       body: Form(
@@ -197,9 +197,9 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
               ),
               ElevatedButton(
                   style: ButtonStyle(
-                      fixedSize: MaterialStateProperty.all(Size(330, 50)),
+                      fixedSize: WidgetStateProperty.all(Size(330, 50)),
                       backgroundColor:
-                          MaterialStateProperty.all(Colorconstant.darkpurple)),
+                          WidgetStateProperty.all(ColorConstant.darkpurple)),
                   onPressed: () async {
                     // if (_formkey.currentState!.validate()) {
                     //   bool success = await insertrecord();
@@ -229,7 +229,7 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
                   child: Text(
                     "Reset",
                     style:
-                        TextStyle(fontSize: 15, color: Colorconstant.mainwhite),
+                        TextStyle(fontSize: 15, color: ColorConstant.mainwhite),
                   )),
             ],
           ),

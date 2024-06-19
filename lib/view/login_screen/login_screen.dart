@@ -121,7 +121,7 @@ class _LoginScreenState extends State<LoginScreen> {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
-        backgroundColor: Colorconstant.pantonebackground,
+        backgroundColor: ColorConstant.pantonebackground,
         actions: [Text("Version 1.0.0")],
       ),
       body: SingleChildScrollView(
@@ -138,7 +138,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     height: 30,
                   ),
                   Image.asset(
-                    "assets/images/CyberHULK Logo final-06.png",
+                    "assets/images/CH green final.png",
                     height: 200,
                   ),
                   // Text(
@@ -207,7 +207,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     children: [
                       Text(
                         "Remember Me",
-                        style: TextStyle(color: Colorconstant.mainblack),
+                        style: TextStyle(color: ColorConstant.mainblack),
                       ),
                       Checkbox(
                         value: isChecked,
@@ -229,7 +229,7 @@ class _LoginScreenState extends State<LoginScreen> {
                             child: Text(
                               "Forgot Password",
                               style: TextStyle(
-                                  color: Colorconstant.darkpurple,
+                                  color: ColorConstant.darkpurple,
                                   decoration: TextDecoration.underline),
                             )),
                       ),
@@ -237,9 +237,9 @@ class _LoginScreenState extends State<LoginScreen> {
                   ),
                   ElevatedButton(
                       style: ButtonStyle(
-                          fixedSize: MaterialStateProperty.all(Size(330, 50)),
-                          backgroundColor: MaterialStateProperty.all(
-                              Colorconstant.darkpurple)),
+                          fixedSize: WidgetStateProperty.all(Size(330, 50)),
+                          backgroundColor: WidgetStateProperty.all(
+                              ColorConstant.darkpurple)),
                       onPressed: () {
                         if (_formkey.currentState!.validate()) {
                           insertrecord();
@@ -248,30 +248,34 @@ class _LoginScreenState extends State<LoginScreen> {
                       child: Text(
                         "Login",
                         style: TextStyle(
-                            fontSize: 15, color: Colorconstant.mainwhite),
+                            fontSize: 15, color: ColorConstant.mainwhite),
                       )),
                   SizedBox(
                     height: 5,
                   ),
                   Text(
                     "Login with Biometrics",
-                    style: TextStyle(color: Colorconstant.mainblack),
+                    style: TextStyle(color: ColorConstant.mainblack),
                   ),
                   IconButton(
                       onPressed: () async {
-                        bool auth = await Authentication.authentication();
-                        print("can Authenticate :$auth");
-                        if (auth) {
-                          Navigator.pushReplacement(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) =>
-                                      BottomNavigationScreen()));
+                        Box box = await Hive.openBox('logindata');
+                        bool isLoggedIn = box.get('termsAccepted');
+                        if (isLoggedIn) {
+                          bool auth = await Authentication.authentication();
+                          print("can Authenticate :$auth");
+                          if (auth) {
+                            Navigator.pushReplacement(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) =>
+                                        BottomNavigationScreen()));
+                          }
                         }
                       },
                       icon: Icon(
                         Icons.fingerprint,
-                        color: Colorconstant.mainblack,
+                        color: ColorConstant.mainblack,
                         size: 50,
                       )),
                   Row(
@@ -279,7 +283,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     children: [
                       Text(
                         "Don't have an account?",
-                        style: TextStyle(color: Colorconstant.mainblack),
+                        style: TextStyle(color: ColorConstant.mainblack),
                       ),
                       TextButton(
                           onPressed: () {
@@ -291,7 +295,7 @@ class _LoginScreenState extends State<LoginScreen> {
                           child: Text(
                             "Signup",
                             style: TextStyle(
-                                color: Colorconstant.darkpurple,
+                                color: ColorConstant.darkpurple,
                                 decoration: TextDecoration.underline),
                           ))
                     ],
@@ -302,14 +306,14 @@ class _LoginScreenState extends State<LoginScreen> {
                 ],
               ),
               Container(
-                color: Colorconstant.mainblack,
+                color: ColorConstant.mainblack,
                 height: 50,
                 width: double.infinity,
                 child: Center(
                   child: Text(
                     "Developed by Avanzo Cyber Security Solutions",
                     style:
-                        TextStyle(fontSize: 10, color: Colorconstant.mainwhite),
+                        TextStyle(fontSize: 10, color: ColorConstant.mainwhite),
                   ),
                 ),
               )

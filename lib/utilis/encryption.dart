@@ -17,10 +17,7 @@ class _EncryptiontextState extends State<Encryptiontext> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text("Encryption"),
-        centerTitle: true,
-      ),
+     
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [

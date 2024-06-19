@@ -1,10 +1,73 @@
+import 'package:cyber_hulk/main.dart';
+import 'package:cyber_hulk/utilis/color_constant/color_constant.dart';
+import 'package:cyber_hulk/view/dashborad_screen/dashboard_screen.dart';
 import 'package:cyber_hulk/view/login_screen/login_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:hive/hive.dart';
+import 'package:provider/provider.dart';
+import 'package:http/http.dart' as http;
 
 class TermsConditionsScreen extends StatelessWidget {
+  const TermsConditionsScreen(
+      {super.key,
+      required this.firstName,
+      required this.lastName,
+      required this.phnumber,
+      required this.mailid,
+      required this.username,
+      required this.password});
+  final String firstName;
+  final String lastName;
+  final String phnumber;
+  final String mailid;
+  final String username;
+  final String password;
   @override
   Widget build(BuildContext context) {
+    var themeProvider = Provider.of<ThemeProvider>(context);
+
+    Future<void> insertrecord() async {
+      if (firstName != "" ||
+          lastName != "" ||
+          phnumber != "" ||
+          mailid != "" ||
+          username != "" ||
+          password != "") {
+        try {
+          String uri =
+              "https://cybot.avanzosolutions.in/cybot/insert_record.php";
+          var res = await http.post(Uri.parse(uri), body: {
+            "firstnamecontroller": firstName,
+            "lastnamecontroller": lastName,
+            "phnumbercontroller": phnumber,
+            "mailidcontroller": mailid,
+            "usernamecontroller": username,
+            "passwordcontroller": password,
+          });
+          var response = "success";
+          var resp = "WRONG CREDENTIALS";
+
+          if (res.body == response) {
+            print("Record inserted");
+            Navigator.pushAndRemoveUntil(
+                context,
+                MaterialPageRoute(builder: (context) => DashboardScreen()),
+                (route) => false);
+          }
+          if (res.body == resp) {
+            Navigator.pushAndRemoveUntil(
+                context,
+                MaterialPageRoute(builder: (context) => LoginScreen()),
+                (route) => false);
+          }
+        } catch (e) {
+          print(e);
+        }
+      } else {
+        print("please fill all fields");
+      }
+    }
+
     return Scaffold(
         appBar: AppBar(
           title: Text("Terms and Conditions"),
@@ -15,7 +78,10 @@ class TermsConditionsScreen extends StatelessWidget {
               child: Column(children: [
                 Text(
                   "CyberHulk - Terms and Conditions",
-                  style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                  style: TextStyle(
+                      fontSize: 20,
+                      fontWeight: FontWeight.bold,
+                      color: ColorConstant.mainblack),
                 ),
                 Text(
                   """
@@ -85,13 +151,19 @@ By using the CyberHulk, the user acknowledges that they have read, understood, a
 be bound by the terms and conditions of this agreement. However, the App will not be
 responsible for any direct or indirect damages caused without proper usage of the app.
       """,
-                  style: TextStyle(fontSize: 16),
+                  style: TextStyle(
+                      fontSize: 16,
+                      // color: themeProvider.themeMode == ThemeMode.dark
+                      //     ? ColorConstant.mainwhite
+                      //     : ColorConstant.mainblack,
+                      color: ColorConstant.mainblack),
                 ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
                     ElevatedButton(
                       onPressed: () async {
+                        insertrecord();
                         var box = await Hive.openBox('logindata');
                         box.put('termsAccepted', true);
                         Navigator.pushReplacement(
@@ -108,17 +180,28 @@ responsible for any direct or indirect damages caused without proper usage of th
                           context: context,
                           builder: (BuildContext context) {
                             return AlertDialog(
-                              title: Text("Terms and Conditions Declined"),
+                              title: Text(
+                                "Terms and Conditions Declined",
+                                style: TextStyle(
+                                  color:
+                                      themeProvider.themeMode == ThemeMode.dark
+                                          ? ColorConstant.mainwhite
+                                          : ColorConstant.mainblack,
+                                ),
+                              ),
                               content: Text(
-                                  "You have declined the terms and conditions. You cannot use the app without accepting the terms and conditions."),
+                                "You have declined the terms and conditions. You cannot use the app without accepting the terms and conditions.",
+                                style: TextStyle(
+                                  color:
+                                      themeProvider.themeMode == ThemeMode.dark
+                                          ? ColorConstant.mainwhite
+                                          : ColorConstant.mainblack,
+                                ),
+                              ),
                               actions: [
                                 TextButton(
                                   onPressed: () {
-                                    Navigator.pushReplacement(
-                                      context,
-                                      MaterialPageRoute(
-                                          builder: (context) => LoginScreen()),
-                                    );
+                                    Navigator.pop(context);
                                   },
                                   child: Text("OK"),
                                 ),

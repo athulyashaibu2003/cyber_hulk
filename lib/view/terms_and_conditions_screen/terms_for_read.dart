@@ -1,4 +1,8 @@
+import 'package:cyber_hulk/utilis/color_constant/color_constant.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+
+import '../../main.dart';
 
 class Termsforread extends StatefulWidget {
   @override
@@ -8,18 +12,30 @@ class Termsforread extends StatefulWidget {
 class _TermsforreadState extends State<Termsforread> {
   @override
   Widget build(BuildContext context) {
+    final themeProvider = Provider.of<ThemeProvider>(context);
     return Scaffold(
         appBar: AppBar(
-          title: Text("Terms and Conditions"),
+          backgroundColor: ColorConstant.pantonemessage,
+          title: Text(
+            "Terms and Conditions",
+            style: TextStyle(
+                color: ColorConstant.darkpurple, fontWeight: FontWeight.bold),
+          ),
         ),
         body: Padding(
-            padding: const EdgeInsets.all(16.0),
+            padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 5),
             child: SingleChildScrollView(
               child: Column(children: [
-                Text(
-                  "CyberHulk - Terms and Conditions",
-                  style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-                ),
+                // Text(
+                //   "CyberHulk - Terms and Conditions",
+                //   style: TextStyle(
+                //     fontSize: 20,
+                //     fontWeight: FontWeight.bold,
+                //     color: themeProvider.themeMode == ThemeMode.dark
+                //         ? ColorConstant.mainwhite
+                //         : ColorConstant.mainblack,
+                //   ),
+                // ),
                 Text(
                   """
            
@@ -88,7 +104,13 @@ By using the CyberHulk, the user acknowledges that they have read, understood, a
 be bound by the terms and conditions of this agreement. However, the App will not be
 responsible for any direct or indirect damages caused without proper usage of the app.
       """,
-                  style: TextStyle(fontSize: 16),
+                  textAlign: TextAlign.start,
+                  style: TextStyle(
+                    fontSize: 16,
+                    color: themeProvider.themeMode == ThemeMode.dark
+                        ? ColorConstant.mainwhite
+                        : ColorConstant.mainblack,
+                  ),
                 )
               ]),
             )));

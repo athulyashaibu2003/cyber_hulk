@@ -17,10 +17,7 @@ class _DDOSAttacktextState extends State<DDOSAttacktext> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text("DDOS Attack"),
-        centerTitle: true,
-      ),
+      
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [

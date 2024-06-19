@@ -17,10 +17,7 @@ class _RansomewareState extends State<Ransomeware> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text("Ransomware"),
-        centerTitle: true,
-      ),
+    
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [

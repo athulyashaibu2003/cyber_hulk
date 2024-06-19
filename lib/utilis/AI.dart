@@ -17,10 +17,7 @@ class _AItextState extends State<AItext> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text("Artificial Intelligence"),
-        centerTitle: true,
-      ),
+      
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [

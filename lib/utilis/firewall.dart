@@ -17,10 +17,7 @@ class _FireWalltextState extends State<FireWalltext> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text("Firewall"),
-        centerTitle: true,
-      ),
+
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [

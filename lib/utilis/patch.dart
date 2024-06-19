@@ -17,10 +17,7 @@ class _PatchtextState extends State<Patchtext> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text("Patch"),
-        centerTitle: true,
-      ),
+      
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [

@@ -31,11 +31,11 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colorconstant.mainwhite,
-      appBar: AppBar(
-        backgroundColor: Colorconstant.pantonemessage,
-        actions: [Text("Version 1.0.0")],
-      ),
+      backgroundColor: ColorConstant.mainwhite,
+      // appBar: AppBar(
+      //   backgroundColor: Colorconstant.pantonemessage,
+      //   actions: [Text("Version 1.0.0")],
+      // ),
       // appBar: AppBar(
       //   actions: [
       //     SizedBox(
@@ -55,20 +55,21 @@ class _SplashScreenState extends State<SplashScreen> {
             Column(mainAxisAlignment: MainAxisAlignment.center, children: [
               Center(
                 child: Image.asset(
-                  "assets/images/CyberHULK Logo final-06.png",
-                  height: 250,
+                  // "assets/images/Artboard 3_PURPLE copy.png",
+                  "assets/images/CH green final.png",
+                  height: MediaQuery.sizeOf(context).height * .25,
                 ),
               ),
             ]),
             Container(
-              color: Colorconstant.mainblack,
+              color: ColorConstant.mainblack,
               height: 50,
               width: double.infinity,
               child: Center(
                 child: Text(
                   "Developed by Avanzo Cyber Security Solutions",
                   style:
-                      TextStyle(fontSize: 10, color: Colorconstant.mainwhite),
+                      TextStyle(fontSize: 10, color: ColorConstant.mainwhite),
                 ),
               ),
             )

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-class Colorconstant {
+class ColorConstant {
   static const Color pantonebackground = Color(0xffd7c6e6);
   static const Color pantonemessage = Color(0xffc1a7e2);
   static const Color darkpurple = Color(0xff7B1FA2);

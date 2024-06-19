@@ -17,10 +17,7 @@ class _HackingtextState extends State<Hackingtext> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text("Hacking"),
-        centerTitle: true,
-      ),
+
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [

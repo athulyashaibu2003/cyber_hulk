@@ -1,9 +1,6 @@
 import 'package:cyber_hulk/utilis/color_constant/color_constant.dart';
-import 'package:cyber_hulk/view/dashborad_screen/dashboard_screen.dart';
-import 'package:cyber_hulk/view/login_screen/login_screen.dart';
 import 'package:cyber_hulk/view/terms_and_conditions_screen/terms_and_conditions_screen.dart';
 import 'package:flutter/material.dart';
-import 'package:http/http.dart' as http;
 
 class SignUpScreen extends StatefulWidget {
   const SignUpScreen({super.key});
@@ -21,7 +18,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
   TextEditingController passwordcontroller = TextEditingController();
   TextEditingController conpasswordcontroller = TextEditingController();
   final _formkey = GlobalKey<FormState>();
-  bool passwordVisible = false;
+  bool passwordObscure = true;
 
   String? validateEmail(String? email) {
     RegExp emailRegex = RegExp(
@@ -33,54 +30,13 @@ class _SignUpScreenState extends State<SignUpScreen> {
     return null;
   }
 
-  Future<void> insertrecord() async {
-    if (firstnamecontroller.text != "" ||
-        lastnamecontroller.text != "" ||
-        phnumbercontroller.text != "" ||
-        mailidcontroller.text != "" ||
-        usernamecontroller.text != "" ||
-        passwordcontroller.text != "") {
-      try {
-        String uri = "https://cybot.avanzosolutions.in/cybot/insert_record.php";
-        var res = await http.post(Uri.parse(uri), body: {
-          "firstnamecontroller": firstnamecontroller.text,
-          "lastnamecontroller": lastnamecontroller.text,
-          "phnumbercontroller": phnumbercontroller.text,
-          "mailidcontroller": mailidcontroller.text,
-          "usernamecontroller": usernamecontroller.text,
-          "passwordcontroller": passwordcontroller.text
-        });
-        var response = "success";
-        var resp = "WRONG CREDENTIALS";
-
-        if (res.body == response) {
-          print("Record inserted");
-          Navigator.pushAndRemoveUntil(
-              context,
-              MaterialPageRoute(builder: (context) => DashboardScreen()),
-              (route) => false);
-        }
-        if (res.body == resp) {
-          Navigator.pushAndRemoveUntil(
-              context,
-              MaterialPageRoute(builder: (context) => LoginScreen()),
-              (route) => false);
-        }
-      } catch (e) {
-        print(e);
-      }
-    } else {
-      print("please fill all fields");
-    }
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       // resizeToAvoidBottomInset: false,
-      backgroundColor: Colorconstant.mainwhite,
+      backgroundColor: ColorConstant.mainwhite,
       appBar: AppBar(
-        backgroundColor: Colorconstant.pantonemessage,
+        backgroundColor: ColorConstant.pantonemessage,
         actions: [const Text("Version 1.0.0")],
       ),
       body: SingleChildScrollView(
@@ -100,7 +56,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   const Text(
                     "Sign Up",
                     style: TextStyle(
-                        color: Colorconstant.darkpurple,
+                        color: ColorConstant.darkpurple,
                         fontWeight: FontWeight.w900,
                         fontSize: 40),
                   ),
@@ -204,16 +160,16 @@ class _SignUpScreenState extends State<SignUpScreen> {
                         const EdgeInsets.only(left: 50, right: 50, bottom: 10),
                     child: TextFormField(
                       style: TextStyle(color: Colors.black),
-                      obscureText: passwordVisible,
+                      obscureText: passwordObscure,
                       controller: passwordcontroller,
                       decoration: InputDecoration(
                           suffixIcon: IconButton(
                             onPressed: () {
                               setState(() {
-                                passwordVisible = !passwordVisible;
+                                passwordObscure = !passwordObscure;
                               });
                             },
-                            icon: Icon(passwordVisible
+                            icon: Icon(passwordObscure
                                 ? Icons.visibility
                                 : Icons.visibility_off),
                           ),
@@ -236,6 +192,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                         const EdgeInsets.only(left: 50, right: 50, bottom: 10),
                     child: TextFormField(
                         style: TextStyle(color: Colors.black),
+                        obscureText: passwordObscure,
                         controller: conpasswordcontroller,
                         decoration: const InputDecoration(
                           hintText: "Confirm Password",
@@ -259,18 +216,27 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   ElevatedButton(
                       style: ButtonStyle(
                           fixedSize:
-                              MaterialStateProperty.all(const Size(330, 50)),
-                          backgroundColor: MaterialStateProperty.all(
-                              Colorconstant.darkpurple)),
+                              WidgetStateProperty.all(const Size(330, 50)),
+                          backgroundColor: WidgetStateProperty.all(
+                              ColorConstant.darkpurple)),
                       onPressed: () {
-                        insertrecord();
-
                         if (_formkey.currentState!.validate()) {
                           Navigator.pushAndRemoveUntil(
                               context,
                               MaterialPageRoute(
-                                  builder: (context) =>
-                                      TermsConditionsScreen()),
+                                  builder: (context) => TermsConditionsScreen(
+                                        firstName:
+                                            firstnamecontroller.text.trim(),
+                                        lastName:
+                                            lastnamecontroller.text.trim(),
+                                        mailid: mailidcontroller.text.trim(),
+                                        phnumber:
+                                            phnumbercontroller.text.trim(),
+                                        username:
+                                            usernamecontroller.text.trim(),
+                                        password:
+                                            passwordcontroller.text.trim(),
+                                      )),
                               (route) => false);
                         }
                       },
@@ -278,7 +244,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                         "Submit",
                         style: TextStyle(
                             fontSize: 20,
-                            color: Colorconstant.pantonebackground),
+                            color: ColorConstant.pantonebackground),
                       )),
                   const SizedBox(
                     height: 53,
@@ -287,14 +253,14 @@ class _SignUpScreenState extends State<SignUpScreen> {
               ),
             ),
             Container(
-              color: Colorconstant.mainblack,
+              color: ColorConstant.mainblack,
               height: 50,
               width: double.infinity,
               child: const Center(
                 child: Text(
                   "Developed by Avanzo Cyber Security Solutions",
                   style:
-                      TextStyle(fontSize: 10, color: Colorconstant.mainwhite),
+                      TextStyle(fontSize: 10, color: ColorConstant.mainwhite),
                 ),
               ),
             )
