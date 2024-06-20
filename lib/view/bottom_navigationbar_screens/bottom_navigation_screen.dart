@@ -5,6 +5,7 @@ import 'package:cyber_hulk/utilis/theme_swich/theme_switch.dart';
 import 'package:cyber_hulk/view/about_avanzo_screen/about_avanzo_screen.dart';
 import 'package:cyber_hulk/view/about_cyberhulk_screen/about_cyberhulk_screen.dart';
 import 'package:cyber_hulk/view/dashborad_screen/dashboard_screen.dart';
+import 'package:cyber_hulk/view/home_screen/home_screen.dart';
 import 'package:cyber_hulk/view/intresting_page.dart/intresting_page.dart';
 import 'package:cyber_hulk/view/news_screen/news_screen.dart';
 import 'package:flutter/material.dart';

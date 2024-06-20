@@ -312,6 +312,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
             askquestioncontroller.text = _text;
             askquestioncontroller.selection = TextSelection.fromPosition(
                 TextPosition(offset: askquestioncontroller.text.length));
+            _isListening = false;
           }),
         );
       }
@@ -427,7 +428,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
                     controller:
                         askquestioncontroller, // Use the provided controller
                     focusNode: focusNode,
-                    autofocus: true,
+                    autofocus: false,
                     decoration: InputDecoration(
                       suffixIcon: IconButton(
                         icon: Icon(_isListening ? Icons.mic : Icons.mic_none),
@@ -563,60 +564,47 @@ class _DashboardScreenState extends State<DashboardScreen> {
                 items: List.generate(
                   Cybertipsclass.cybertips.length,
                   (index) {
-                    return Container(
-                      height: MediaQuery.sizeOf(context).height * .5,
-                      width: MediaQuery.of(context).size.width * .9,
-                      decoration: BoxDecoration(
-                          color: ColorConstant.pantonemessage,
-                          borderRadius: BorderRadius.circular(10)),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Spacer(),
-                          Text(
-                            textAlign: TextAlign.center,
-                            Cybertipsclass.cybertips[index]["title"],
-                            style: TextStyle(
-                                color: ColorConstant.mainblack,
-                                fontSize: 25,
-                                fontWeight: FontWeight.bold),
-                          ),
-                          Spacer(),
-                          Padding(
-                            padding: const EdgeInsets.symmetric(horizontal: 10),
-                            child: Text(
-                              textAlign: TextAlign.justify,
-                              Cybertipsclass.cybertips[index]["subtitle"],
+                    return InkWell(
+                      onTap: () {
+                        TipsBottomSheet(context, index);
+                      },
+                      child: Container(
+                        height: MediaQuery.sizeOf(context).height * .5,
+                        width: MediaQuery.of(context).size.width * .9,
+                        decoration: BoxDecoration(
+                            color: ColorConstant.pantonemessage,
+                            borderRadius: BorderRadius.circular(10)),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Spacer(),
+                            Text(
+                              textAlign: TextAlign.center,
+                              Cybertipsclass.cybertips[index]["title"],
                               style: TextStyle(
                                   color: ColorConstant.mainblack,
-                                  fontWeight: FontWeight.w500),
+                                  fontSize: 25,
+                                  fontWeight: FontWeight.bold),
                             ),
-                          ),
-                          Spacer(),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.end,
-                            children: [
-                              InkWell(
-                                onTap: () {
-                                  TipsBottomSheet(context, index);
-                                },
-                                child: Text(
-                                  "Know more",
-                                  style: TextStyle(
-                                      decoration: TextDecoration.underline),
-                                ),
+                            Spacer(),
+                            Padding(
+                              padding:
+                                  const EdgeInsets.symmetric(horizontal: 10),
+                              child: Text(
+                                textAlign: TextAlign.justify,
+                                Cybertipsclass.cybertips[index]["subtitle"],
+                                style: TextStyle(
+                                    color: ColorConstant.mainblack,
+                                    fontWeight: FontWeight.w500),
                               ),
-                              SizedBox(
-                                width: MediaQuery.sizeOf(context).width * 0.01,
-                                // height: 15,
-                              )
-                            ],
-                          ),
-                          SizedBox(
-                            height: MediaQuery.sizeOf(context).height * 0.02,
-                          )
-                        ],
+                            ),
+                            Spacer(),
+                            SizedBox(
+                              height: MediaQuery.sizeOf(context).height * 0.02,
+                            )
+                          ],
+                        ),
                       ),
                     );
                   },
