@@ -1,7 +1,9 @@
 import 'package:cyber_hulk/main.dart';
 import 'package:cyber_hulk/utilis/color_constant/color_constant.dart';
 import 'package:cyber_hulk/utilis/dummy_db.dart/dummy_db.dart';
+import 'package:cyber_hulk/view/facts_details_screen/facts_details_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'package:stacked_card_carousel/stacked_card_carousel.dart';
 
@@ -62,11 +64,11 @@ class _InterestingPageState extends State<InterestingPage> {
           height: 15,
         ),
         Text(
-          'Interesting Facts',
+          'Captivating details',
           style: TextStyle(
-              fontSize: 25,
-              fontWeight: FontWeight.bold,
-              color: ColorConstant.mainblack),
+            fontSize: 25,
+            fontWeight: FontWeight.bold,
+          ),
         ),
         Expanded(
           child: StackedCardCarousel(
@@ -169,6 +171,9 @@ class FancyCard extends StatelessWidget {
             Container(
               width: 250,
               height: 250,
+              clipBehavior: Clip.antiAlias,
+              decoration:
+                  BoxDecoration(borderRadius: BorderRadius.circular(10)),
               child: Image.network(
                 image,
                 fit: BoxFit.cover,
@@ -176,11 +181,22 @@ class FancyCard extends StatelessWidget {
             ),
             Text(
               title,
+              style: GoogleFonts.poppins(
+                  textStyle: TextStyle(
+                fontSize: 16,
+                fontWeight: FontWeight.w600,
+              )),
             ),
             OutlinedButton(
                 child: const Text("Learn more"),
                 onPressed: () {
-                  FactsBottomSheet(context, index);
+                  // FactsBottomSheet(context, index);
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => FactsDetailsScreen(index: index),
+                      ));
+
                   print("Button was tapped");
                 }),
           ],

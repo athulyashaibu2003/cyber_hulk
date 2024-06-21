@@ -17,8 +17,10 @@ class LoginScreen extends StatefulWidget {
 class _LoginScreenState extends State<LoginScreen> {
   TextEditingController loginusernamecontroller = TextEditingController();
   TextEditingController loginpasswordcontroller = TextEditingController();
+  TextEditingController usernamecontroller = TextEditingController();
   bool passwordVisible = false;
   final _formkey = GlobalKey<FormState>();
+  final _bioFormKey = GlobalKey<FormState>();
   bool isChecked = false;
   late Box box1;
 
@@ -97,6 +99,64 @@ class _LoginScreenState extends State<LoginScreen> {
           });
           loginpasswordcontroller.clear();
           loginusernamecontroller.clear();
+        } else if (res.body == resp) {
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(
+              content: Text(
+                "Login Unsuccessful",
+                style: TextStyle(color: Colors.red),
+              ),
+              duration: Duration(seconds: 2),
+            ),
+          );
+        }
+      } catch (e) {
+        print(e);
+      }
+    } else {
+      print("Please fill all fields");
+    }
+  }
+
+  Future<void> biometricAuth() async {
+    if (usernamecontroller.text.isNotEmpty) {
+      try {
+        String uri =
+            "https://cybot.avanzosolutions.in/cybot/insert_recordfinger.php";
+        var res = await http.post(Uri.parse(uri), body: {
+          "usernamecontroller": usernamecontroller.text.trim(),
+        });
+        var response = "success";
+        var resp = "WRONG CREDENTIALS";
+
+        if (res.body == response) {
+          bool auth = await Authentication.authentication();
+          print("can Authenticate :$auth");
+          if (auth) {
+            Navigator.pushReplacement(
+              context,
+              MaterialPageRoute(
+                builder: (context) => BottomNavigationScreen(),
+              ),
+            );
+          }
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(
+              content: Text(
+                "Login Successfully",
+                style: TextStyle(color: Colors.green),
+              ),
+              duration: Duration(milliseconds: 1500),
+            ),
+          );
+          Future.delayed(Duration(milliseconds: 1500), () {
+            Navigator.pushAndRemoveUntil(
+                context,
+                MaterialPageRoute(
+                    builder: (context) => BottomNavigationScreen()),
+                (route) => false);
+          });
+          usernamecontroller.clear();
         } else if (res.body == resp) {
           ScaffoldMessenger.of(context).showSnackBar(
             SnackBar(
@@ -259,19 +319,43 @@ class _LoginScreenState extends State<LoginScreen> {
                   ),
                   IconButton(
                       onPressed: () async {
-                        Box box = await Hive.openBox('logindata');
-                        bool isLoggedIn = box.get('termsAccepted');
-                        if (isLoggedIn) {
-                          bool auth = await Authentication.authentication();
-                          print("can Authenticate :$auth");
-                          if (auth) {
-                            Navigator.pushReplacement(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) =>
-                                        BottomNavigationScreen()));
-                          }
-                        }
+                        showDialog(
+                          context: context,
+                          builder: (context) => AlertDialog(
+                            title: Form(
+                              key: _bioFormKey,
+                              child: TextFormField(
+                                  controller: usernamecontroller,
+                                  decoration: InputDecoration(
+                                    border: OutlineInputBorder(),
+                                    hintText: "Username",
+                                  ),
+                                  validator: (value) {
+                                    if (value != null && value.length >= 5) {
+                                      return null;
+                                    } else {
+                                      return "Enter a valid username for login";
+                                    }
+                                  }),
+                            ),
+                            actions: [
+                              IconButton(
+                                  onPressed: () async {
+                                    if (_bioFormKey.currentState!.validate()) {
+                                      biometricAuth();
+                                    }
+                                  },
+                                  icon: Icon(
+                                    Icons.fingerprint,
+                                    color: ColorConstant.mainblack,
+                                    size: 50,
+                                  )),
+                            ],
+                          ),
+                        );
+                        // Box box = await Hive.openBox('logindata');
+                        // bool isLoggedIn = box.get('termsAccepted');
+                        // if (isLoggedIn) {
                       },
                       icon: Icon(
                         Icons.fingerprint,

@@ -242,6 +242,7 @@ import 'package:cyber_hulk/database/database.dart';
 import 'package:cyber_hulk/main.dart';
 import 'package:cyber_hulk/utilis/color_constant/color_constant.dart';
 import 'package:cyber_hulk/view/answers_screen.dart/answers_screen.dart';
+import 'package:cyber_hulk/view/facts_details_screen/facts_details_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_typeahead/flutter_typeahead.dart';
 import 'package:provider/provider.dart';
