@@ -51,7 +51,21 @@ class _BottomNavigationScreenState extends State<BottomNavigationScreen> {
     return Scaffold(
       // backgroundColor: Colorconstant.mainwhite,
       appBar: indexnum == 4
-          ? null
+          ? AppBar(
+              backgroundColor: ColorConstant.mainwhite,
+              toolbarHeight: 68,
+              centerTitle: true,
+              title: CircleAvatar(
+                  radius: MediaQuery.sizeOf(context).width * .1,
+                  backgroundColor: Colors.white,
+                  backgroundImage: AssetImage("assets/images/avzlogo.png")),
+              actions: [
+                Visibility(
+                  visible: false,
+                  child: ThemeSwitch(),
+                ),
+              ],
+            )
           : AppBar(
               backgroundColor: ColorConstant.pantonemessage,
               toolbarHeight: 68,
@@ -155,12 +169,13 @@ class _BottomNavigationScreenState extends State<BottomNavigationScreen> {
         backgroundColor: Colors.transparent,
         color: ColorConstant.pantonemessage,
         items: <Widget>[
-          ImageIcon(
-            AssetImage(
-              "assets/images/CyberHULK Logo final small.png",
-            ),
-            size: 30,
-          ),
+          // ImageIcon(
+          //   AssetImage(
+          //     "assets/images/CyberHULK Logo final small.png",
+          //   ),
+          //   size: 30,
+          // ),
+          Icon(Icons.home),
           Icon(
             Icons.search,
             size: 30,

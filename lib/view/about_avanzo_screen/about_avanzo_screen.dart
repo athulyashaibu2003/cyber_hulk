@@ -65,18 +65,18 @@ class _AboutAvanzoScreenState extends State<AboutAvanzoScreen> {
         child: SafeArea(
           child: Column(
             children: [
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  SizedBox(
-                    width: 5,
-                  ),
-                  CircleAvatar(
-                      radius: size.width * .1,
-                      backgroundColor: Colors.white,
-                      backgroundImage: AssetImage("assets/images/avzlogo.png")),
-                ],
-              ),
+              // Row(
+              //   mainAxisAlignment: MainAxisAlignment.center,
+              //   children: [
+              //     SizedBox(
+              //       width: 5,
+              //     ),
+              //     CircleAvatar(
+              //         radius: size.width * .1,
+              //         backgroundColor: Colors.white,
+              //         backgroundImage: AssetImage("assets/images/avzlogo.png")),
+              //   ],
+              // ),
 
               Text("Avanzo",
                   style: GoogleFonts.poppins(

@@ -172,8 +172,10 @@ class FancyCard extends StatelessWidget {
               width: 250,
               height: 250,
               clipBehavior: Clip.antiAlias,
-              decoration:
-                  BoxDecoration(borderRadius: BorderRadius.circular(10)),
+              decoration: BoxDecoration(
+                  // border: Border.all(color: Colors.black),
+                  borderRadius:
+                      BorderRadius.only(bottomLeft: Radius.circular(150))),
               child: Image.network(
                 image,
                 fit: BoxFit.cover,
