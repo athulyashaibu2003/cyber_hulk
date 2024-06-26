@@ -198,7 +198,7 @@ class _ChatScreenState extends State<ChatScreen> {
                         option,
                         style: GoogleFonts.poppins(
                           textStyle: TextStyle(
-                              color: Colors.black,
+                              //  color: Colors.black,
                               fontSize: 16,
                               fontWeight: FontWeight.w400),
                         ),

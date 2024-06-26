@@ -242,7 +242,6 @@ import 'package:cyber_hulk/database/database.dart';
 import 'package:cyber_hulk/main.dart';
 import 'package:cyber_hulk/utilis/color_constant/color_constant.dart';
 import 'package:cyber_hulk/view/answers_screen.dart/answers_screen.dart';
-import 'package:cyber_hulk/view/facts_details_screen/facts_details_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_typeahead/flutter_typeahead.dart';
 import 'package:provider/provider.dart';
@@ -310,7 +309,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
           onResult: (val) => setState(() {
             askquestioncontroller.text = val.recognizedWords;
             _text = val.recognizedWords;
-            askquestioncontroller.text = _text;
+            askquestioncontroller.text = "$_text?";
             askquestioncontroller.selection = TextSelection.fromPosition(
                 TextPosition(offset: askquestioncontroller.text.length));
             _isListening = false;
@@ -430,6 +429,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
                         askquestioncontroller, // Use the provided controller
                     focusNode: focusNode,
                     autofocus: false,
+
                     decoration: InputDecoration(
                       suffixIcon: IconButton(
                         icon: Icon(_isListening ? Icons.mic : Icons.mic_none),
@@ -472,15 +472,21 @@ class _DashboardScreenState extends State<DashboardScreen> {
                 String response = await askquestion();
                 answers = response;
                 String question = askquestioncontroller.text;
-                log("this will be printed on ui $answers");
+                // log("this will be printed on ui $answers");
+                print("respose===== $answers");
                 setState(() {});
+                answers != "WRONG CREDENTIALS "
+                    ? Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => Answersscreen(
+                              answers: answers, question: question),
+                        ))
+                    : ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                        backgroundColor: Colors.purple,
+                        content: Text("There is no answer")));
+                FocusScope.of(context).unfocus();
                 askquestioncontroller.clear();
-                Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) =>
-                          Answersscreen(answers: answers, question: question),
-                    ));
               },
               child: Text(
                 "Ask",

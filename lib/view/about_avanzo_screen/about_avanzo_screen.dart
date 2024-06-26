@@ -1,4 +1,3 @@
-import 'package:cyber_hulk/utilis/color_constant/color_constant.dart';
 import 'package:cyber_hulk/view/reach_to_us_screen/reach_to_us_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -51,20 +50,24 @@ class _AboutAvanzoScreenState extends State<AboutAvanzoScreen> {
   Widget build(BuildContext context) {
     // final themeProvider = Provider.of<ThemeProvider>(context);
     Size size = MediaQuery.sizeOf(context);
-    return Scaffold(
-      body: Container(
-        height: size.height,
-        width: size.width,
-        decoration: BoxDecoration(
+    return Container(
+      height: size.height,
+      width: size.width,
+      decoration: BoxDecoration(
           // image: DecorationImage(
           //     image: NetworkImage(
           //         "https://img.freepik.com/premium-vector/cyber-security-digital-background_734894-18.jpg"),
           //     fit: BoxFit.cover)
-          color: ColorConstant.mainwhite,
-        ),
-        child: SafeArea(
+          // color: ColorConstant.mainwhite,
+          ),
+      child: SafeArea(
+        child: SingleChildScrollView(
           child: Column(
             children: [
+              CircleAvatar(
+                  radius: MediaQuery.sizeOf(context).width * .1,
+                  backgroundColor: Colors.white,
+                  backgroundImage: AssetImage("assets/images/avzlogo.png")),
               // Row(
               //   mainAxisAlignment: MainAxisAlignment.center,
               //   children: [
@@ -81,7 +84,7 @@ class _AboutAvanzoScreenState extends State<AboutAvanzoScreen> {
               Text("Avanzo",
                   style: GoogleFonts.poppins(
                       textStyle: TextStyle(
-                          color: ColorConstant.mainblack,
+                          // color: ColorConstant.mainblack,
                           height: 2,
                           fontSize: 35,
                           fontWeight: FontWeight.bold))),
@@ -92,7 +95,7 @@ class _AboutAvanzoScreenState extends State<AboutAvanzoScreen> {
                     textAlign: TextAlign.center,
                     style: GoogleFonts.poppins(
                         textStyle: TextStyle(
-                            color: ColorConstant.mainblack,
+                            // color: ColorConstant.mainblack,
                             height: 1.6,
                             fontSize: 17))),
               ),
@@ -180,6 +183,9 @@ class _AboutAvanzoScreenState extends State<AboutAvanzoScreen> {
           ),
         ),
       ),
+    );
+  }
+}
 
       // ==================================================================
 
@@ -374,6 +380,3 @@ class _AboutAvanzoScreenState extends State<AboutAvanzoScreen> {
 //           ),
 //         ],
 //       ),
-    );
-  }
-}

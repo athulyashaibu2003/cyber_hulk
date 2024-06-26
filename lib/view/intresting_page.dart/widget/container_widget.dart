@@ -67,7 +67,7 @@ class ContainerWidget extends StatelessWidget {
                         decoration: BoxDecoration(
                             color: const Color.fromARGB(255, 201, 115, 216),
                             borderRadius: BorderRadius.circular(10)),
-                        height: constraints.maxHeight * .26,
+                        height: constraints.maxHeight * .26,         
                         width: constraints.maxWidth),
                     Spacer(),
                     Container(

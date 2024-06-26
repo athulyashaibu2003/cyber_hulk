@@ -155,7 +155,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 MaterialPageRoute(
                     builder: (context) => BottomNavigationScreen()),
                 (route) => false);
-          });
+          });       
           usernamecontroller.clear();
         } else if (res.body == resp) {
           ScaffoldMessenger.of(context).showSnackBar(
@@ -166,7 +166,7 @@ class _LoginScreenState extends State<LoginScreen> {
               ),
               duration: Duration(seconds: 2),
             ),
-          );
+          ); 
         }
       } catch (e) {
         print(e);

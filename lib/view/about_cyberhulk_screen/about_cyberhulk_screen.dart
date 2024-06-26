@@ -74,87 +74,81 @@ class _AboutCyberHulkScreenState extends State<AboutCyberHulkScreen>
 
     Size size = MediaQuery.sizeOf(context);
 
-    return Scaffold(
-      // appBar: AppBar(
-      //   title: Text("CyberHulk"),
-      //   centerTitle: true,
-      // ),
-      body: SingleChildScrollView(
-        child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 5),
-          child: Column(
-            children: [
-              Center(
-                child: Container(
-                  height: size.height * 0.25,
-                  width: size.width * 0.5,
-                  decoration: BoxDecoration(
-                      image: DecorationImage(
-                          image: AssetImage(
-                            "assets/images/CH green final.png",
-                          ),
-                          fit: BoxFit.fitWidth)),
-                  // child: Image.asset(
-                  //     // themeProvider.themeMode == ThemeMode.dark
-                  //     //     ? "assets/images/CyberHULK Logo final-07.png"
-                  //     //     : "assets/images/CyberHULK Logo final-06.png",
-                  //     "assets/images/Artboard 3_PURPLE.png",
-                  //     fit: BoxFit.fitHeight,
-                  //     height: 150),
-                ),
+    return SingleChildScrollView(
+      child: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 5),
+        child: Column(
+          children: [
+            Center(
+              child: Container(
+                height: size.height * 0.25,
+                width: size.width * 0.5,
+                decoration: BoxDecoration(
+                    image: DecorationImage(
+                        image: AssetImage(
+                          "assets/images/CH green final.png",
+                        ),
+                        fit: BoxFit.fitWidth)),
+                // child: Image.asset(
+                //     // themeProvider.themeMode == ThemeMode.dark
+                //     //     ? "assets/images/CyberHULK Logo final-07.png"
+                //     //     : "assets/images/CyberHULK Logo final-06.png",
+                //     "assets/images/Artboard 3_PURPLE.png",
+                //     fit: BoxFit.fitHeight,
+                //     height: 150),
               ),
+            ),
 
-              // SizedBox(height: 10),
-              AnimatedBuilder(
-                animation: _typewriterAnimation,
-                builder: (context, child) {
-                  String textToShow = (_typewriterAnimation.value <=
-                          _text1.length)
-                      ? _text1.substring(0, _typewriterAnimation.value)
-                      : _text1 +
-                          _text2.substring(
-                              0, _typewriterAnimation.value - _text1.length);
-                  return Text(
-                    textToShow,
-                    textAlign: TextAlign.justify,
-                    style: TextStyle(
-                        color: themeProvider.themeMode == ThemeMode.dark
-                            ? textColor = ColorConstant.mainwhite
-                            : textColor = ColorConstant.mainblack,
-                        fontSize: 16.0),
-                  );
-                },
-              ),
-              TextButton(
-                onPressed: () {
-                  Navigator.push(context,
-                      MaterialPageRoute(builder: (context) => Termsforread()));
-                },
-                child: Text(
-                  "Terms and conditions",
+            // SizedBox(height: 10),
+            AnimatedBuilder(
+              animation: _typewriterAnimation,
+              builder: (context, child) {
+                String textToShow =
+                    (_typewriterAnimation.value <= _text1.length)
+                        ? _text1.substring(0, _typewriterAnimation.value)
+                        : _text1 +
+                            _text2.substring(
+                                0, _typewriterAnimation.value - _text1.length);
+                return Text(
+                  textToShow,
+                  textAlign: TextAlign.justify,
                   style: TextStyle(
-                      fontWeight: FontWeight.bold,
-                      fontSize: 18,
-                      color: ColorConstant.darkpurple),
+                      color: themeProvider.themeMode == ThemeMode.dark
+                          ? textColor = ColorConstant.mainwhite
+                          : textColor = ColorConstant.mainblack,
+                      fontSize: 16.0),
+                );
+              },
+            ),
+            TextButton(
+              onPressed: () {
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => Termsforread()));
+              },
+              child: Text(
+                "Terms and conditions",
+                style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    fontSize: 18,
+                    color: ColorConstant.darkpurple),
+              ),
+            ),
+            SizedBox(
+              height: 25,
+            ),
+            OutlinedButton(
+              style: ButtonStyle(
+                side: WidgetStateProperty.all(
+                  BorderSide(color: ColorConstant.darkpurple),
                 ),
               ),
-              SizedBox(
-                height: 25,
+              onPressed: logout,
+              child: Text(
+                "Logout",
+                style: TextStyle(color: ColorConstant.darkpurple),
               ),
-              OutlinedButton(
-                style: ButtonStyle(
-                  side: WidgetStateProperty.all(
-                    BorderSide(color: ColorConstant.darkpurple),
-                  ),
-                ),
-                onPressed: logout,
-                child: Text(
-                  "Logout",
-                  style: TextStyle(color: ColorConstant.darkpurple),
-                ),
-              )
-            ],
-          ),
+            )
+          ],
         ),
       ),
     );

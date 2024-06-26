@@ -235,7 +235,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                         username:
                                             usernamecontroller.text.trim(),
                                         password:
-                                            passwordcontroller.text.trim(),
+                                            passwordcontroller.text.trim(),    
                                       )),
                               (route) => false);
                         }

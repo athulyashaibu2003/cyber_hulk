@@ -6,6 +6,7 @@ import 'package:provider/provider.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+
   await Hive.initFlutter();
   Box box = await Hive.openBox('logindata');
   bool isLoggedIn = box.get('isLoggedIn', defaultValue: false);
@@ -39,10 +40,13 @@ class MyApp extends StatelessWidget {
 }
 
 class ThemeProvider with ChangeNotifier {
-  ThemeMode _themeMode = ThemeMode.system;
+  ThemeMode _themeMode = ThemeMode.dark;
   ThemeMode get themeMode => _themeMode;
 
   void toggleTheme(bool isDarkMode) {
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      notifyListeners();
+    });
     _themeMode = isDarkMode ? ThemeMode.dark : ThemeMode.light;
     WidgetsBinding.instance.addPostFrameCallback((_) {
       notifyListeners();

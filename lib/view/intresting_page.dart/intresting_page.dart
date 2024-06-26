@@ -63,13 +63,13 @@ class _InterestingPageState extends State<InterestingPage> {
         SizedBox(
           height: 15,
         ),
-        Text(
-          'Captivating details',
-          style: TextStyle(
-            fontSize: 25,
-            fontWeight: FontWeight.bold,
-          ),
-        ),
+        // Text(
+        //   'Peculiar Findings',
+        //   style: TextStyle(
+        //     fontSize: 25,
+        //     fontWeight: FontWeight.bold,
+        //   ),
+        // ),
         Expanded(
           child: StackedCardCarousel(
             //   pageController: PageController(),
@@ -174,8 +174,9 @@ class FancyCard extends StatelessWidget {
               clipBehavior: Clip.antiAlias,
               decoration: BoxDecoration(
                   // border: Border.all(color: Colors.black),
-                  borderRadius:
-                      BorderRadius.only(bottomLeft: Radius.circular(150))),
+                  borderRadius: BorderRadius.only(
+                      topLeft: Radius.circular(50),
+                      bottomRight: Radius.circular(100))),
               child: Image.network(
                 image,
                 fit: BoxFit.cover,
