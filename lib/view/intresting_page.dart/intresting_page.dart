@@ -177,7 +177,7 @@ class FancyCard extends StatelessWidget {
                   borderRadius: BorderRadius.only(
                       topLeft: Radius.circular(50),
                       bottomRight: Radius.circular(100))),
-              child: Image.network(
+              child: Image.asset(
                 image,
                 fit: BoxFit.cover,
               ),

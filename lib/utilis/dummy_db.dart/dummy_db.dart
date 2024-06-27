@@ -2,11 +2,7 @@ class BottomSheetContainer {
   static List<Map<dynamic, dynamic>> info = [
     {
       'details': [
-        {
-          'name': 'Phishing',
-          'img':
-              'https://media.geeksforgeeks.org/wp-content/uploads/20230622121746/global-data-security-personal-data-security-cyber-data-security-online-concept-illustration-internet-security-information-privacy-protection_1150-37368.webp'
-        }
+        {'name': 'Phishing', 'img': "assets/images/phishing.jpg"}
       ],
       'des': [
         {
@@ -28,11 +24,7 @@ class BottomSheetContainer {
     },
     {
       'details': [
-        {
-          'name': 'Cyber Security',
-          'img':
-              'https://media.istockphoto.com/id/1383553886/vector/abstract-banner-cyber-security-in-3d-style-communication-technology-database-system.jpg?s=612x612&w=0&k=20&c=H_EGuMLGF8qTCp_aqYHIyYgUUz-V66gSGffmHV8elOw='
-        }
+        {'name': 'Cyber Security', 'img': "assets/images/cyber secuirty.jpg"}
       ],
       'des': [
         {
@@ -65,11 +57,7 @@ class BottomSheetContainer {
     },
     {
       'details': [
-        {
-          'name': 'Malware',
-          'img':
-              'https://www.shutterstock.com/image-vector/malware-icon-vector-isolated-on-260nw-1177007695.jpg'
-        }
+        {'name': 'Malware', 'img': "assets/images/malware.jpg"}
       ],
       'des': [
         {
@@ -96,11 +84,7 @@ class BottomSheetContainer {
     },
     {
       'details': [
-        {
-          'name': 'Hacking',
-          'img':
-              'https://thrivedx.com/wp-content/uploads/2023/02/0_nraBHnNyCSVqwptY.png'
-        }
+        {'name': 'Hacking', 'img': "assets/images/hacking.jpg"}
       ],
       'des': [
         {
@@ -132,10 +116,7 @@ class BottomSheetContainer {
     },
     {
       'details': [
-        {
-          'name': 'Data Breach',
-          'img': 'https://images.wsj.net/im-931175?width=1280&size=1.33333333'
-        }
+        {'name': 'Data Breach', 'img': 'assets/images/data breach.png'}
       ],
       'des': [
         {
@@ -183,11 +164,7 @@ class BottomSheetContainer {
     },
     {
       'details': [
-        {
-          'name': 'DDoS attack',
-          'img':
-              'https://www.shutterstock.com/image-photo/ddos-attack-cyber-protection-virus-260nw-1116751499.jpg'
-        }
+        {'name': 'DDoS attack', 'img': 'assets/images/ddos attack.jpg'}
       ],
       'des': [
         {
@@ -209,11 +186,7 @@ class BottomSheetContainer {
     },
     {
       'details': [
-        {
-          'name': 'Firewall',
-          'img':
-              'https://www.rivialsecurity.com/hubfs/AdobeStock_309613855%20copy.jpg'
-        }
+        {'name': 'Firewall', 'img': 'assets/images/firewall.jpg'}
       ],
       'des': [
         {
@@ -240,11 +213,7 @@ class BottomSheetContainer {
     },
     {
       'details': [
-        {
-          'name': 'Patch',
-          'img':
-              'https://www.connectwise.com/globalassets/media/blog/2021/whyisapatchmanagementsolutionimportantforcybersecurity-bg-595x333.png'
-        },
+        {'name': 'Patch', 'img': 'assets/images/patch.png'},
       ],
       'des': [
         {
@@ -272,11 +241,7 @@ class BottomSheetContainer {
     },
     {
       'details': [
-        {
-          'name': 'AI',
-          'img':
-              'https://imageio.forbes.com/specials-images/imageserve/64b5825a5b9b4d3225e9bd15/0x0.jpg?format=jpg&height=900&width=1600&fit=bounds'
-        },
+        {'name': 'AI', 'img': "assets/images/ai.jpg"},
       ],
       'des': [
         {
@@ -303,11 +268,7 @@ class BottomSheetContainer {
     },
     {
       'details': [
-        {
-          'name': 'Encryption',
-          'img':
-              'https://media.licdn.com/dms/image/D5612AQFZFNLPMuCSrQ/article-cover_image-shrink_720_1280/0/1681719119695?e=2147483647&v=beta&t=Dd8RvdVNoMCnWr7mMiSTF-w05kjzeiiWL-dTw9pUTK0'
-        },
+        {'name': 'Encryption', 'img': 'assets/images/encryption.jpg'},
       ],
       'des': [
         {
@@ -336,8 +297,7 @@ class BottomSheetContainer {
       'details': [
         {
           'name': 'Security Incident',
-          'img':
-              'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSLBBmTKq5Irilk0R27kmwC-FEOLk1AdfUp-g&s'
+          'img': 'assets/images/secuirty incident.jpg'
         },
       ],
       'des': [
@@ -365,11 +325,7 @@ class BottomSheetContainer {
     },
     {
       'details': [
-        {
-          'name': 'Robotics',
-          'img':
-              'https://imageio.forbes.com/specials-images/imageserve//613246cfa37776e285f84f80/0x0.jpg?format=jpg&height=900&width=1600&fit=bounds'
-        },
+        {'name': 'Robotics', 'img': 'assets/images/robotics.jpg'},
       ],
       'des': [
         {
@@ -397,11 +353,7 @@ class BottomSheetContainer {
     },
     {
       'details': [
-        {
-          'name': 'Ransomware',
-          'img':
-              'https://www.xcitium.com/blog/wp-content/uploads/2022/10/what-is-ransomware-on-a-computer.png'
-        },
+        {'name': 'Ransomware', 'img': 'assets/images/ransomware.jpg'},
       ],
       'des': [
         {

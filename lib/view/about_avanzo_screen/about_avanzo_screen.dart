@@ -71,7 +71,7 @@ class _AboutAvanzoScreenState extends State<AboutAvanzoScreen> {
               // Row(
               //   mainAxisAlignment: MainAxisAlignment.center,
               //   children: [
-              //     SizedBox(
+              //     SizedBox(       
               //       width: 5,
               //     ),
               //     CircleAvatar(
