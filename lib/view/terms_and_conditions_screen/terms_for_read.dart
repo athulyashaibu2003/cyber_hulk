@@ -5,6 +5,8 @@ import 'package:provider/provider.dart';
 import '../../main.dart';
 
 class Termsforread extends StatefulWidget {
+  const Termsforread({super.key});
+
   @override
   State<Termsforread> createState() => _TermsforreadState();
 }
@@ -16,7 +18,7 @@ class _TermsforreadState extends State<Termsforread> {
     return Scaffold(
         appBar: AppBar(
           backgroundColor: ColorConstant.pantonemessage,
-          title: Text(
+          title: const Text(
             "Terms and Conditions",
             style: TextStyle(
                 color: ColorConstant.darkpurple, fontWeight: FontWeight.bold),

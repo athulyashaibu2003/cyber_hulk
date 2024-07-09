@@ -11,14 +11,14 @@ class FactsDetailsScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(0XFF8E44AD),
+      backgroundColor: const Color(0XFF8E44AD),
       appBar: AppBar(
-        backgroundColor: Color(0XFF8E44AD),
+        backgroundColor: const Color(0XFF8E44AD),
       ),
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          SizedBox(height: 20),
+          const SizedBox(height: 20),
           Expanded(
             child: ListView.separated(
               itemCount: BottomSheetContainer.info[index]['des'].length,
@@ -31,7 +31,7 @@ class FactsDetailsScreen extends StatelessWidget {
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(15),
                       color: ColorConstant.mainwhite,
-                      boxShadow: [
+                      boxShadow: const [
                         BoxShadow(
                           color: Colors.grey,
                           offset: Offset(0, 3),
@@ -55,7 +55,7 @@ class FactsDetailsScreen extends StatelessWidget {
                           BottomSheetContainer.info[index]['des'][check]
                               ['question'],
                           style: GoogleFonts.poppins(
-                            textStyle: TextStyle(
+                            textStyle: const TextStyle(
                                 fontWeight: FontWeight.bold,
                                 fontSize: 30,
                                 color: Color(0xff6A0DAD)),
@@ -65,19 +65,19 @@ class FactsDetailsScreen extends StatelessWidget {
                         BottomSheetContainer.info[index]['des'][check]
                             ['answer'],
                         style: GoogleFonts.poppins(
-                            textStyle: TextStyle(
-                                color: Provider.of<ThemeProvider>(context)
-                                            .themeMode ==
-                                        ThemeMode.dark
-                                    ? ColorConstant.mainwhite
-                                    : ColorConstant.mainblack,
+                            textStyle: const TextStyle(
+                                // color: Provider.of<ThemeProvider>(context)
+                                //             .themeMode ==
+                                //         ThemeMode.dark
+                                //     ? ColorConstant.mainwhite
+                                //     : ColorConstant.mainblack,
                                 fontSize: 17)),
                       ),
                     ),
                   ),
                 );
               },
-              separatorBuilder: (context, index) => SizedBox(
+              separatorBuilder: (context, index) => const SizedBox(
                 height: 10,
               ),
             ),

@@ -10,6 +10,6 @@ class VoiceRecoginition extends StatefulWidget {
 class _VoiceRecoginitionState extends State<VoiceRecoginition> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold();
+    return const Scaffold();
   }
 }

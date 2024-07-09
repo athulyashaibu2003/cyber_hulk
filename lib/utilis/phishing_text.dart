@@ -18,7 +18,6 @@ class _PhishingTextState extends State<PhishingText> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
@@ -30,7 +29,7 @@ class _PhishingTextState extends State<PhishingText> {
                       subtitle: Text(ContainerText.phishingInfo[index]["answer"]
                           .toString()),
                     ),
-                separatorBuilder: (context, index) => SizedBox(
+                separatorBuilder: (context, index) => const SizedBox(
                       height: 10,
                     ),
                 itemCount: ContainerText.phishingInfo.length),

@@ -3,6 +3,8 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
 
 class ChatScreen extends StatefulWidget {
+  const ChatScreen({super.key});
+
   @override
   _ChatScreenState createState() => _ChatScreenState();
 }
@@ -17,26 +19,52 @@ class _ChatScreenState extends State<ChatScreen> {
   ];
 
   final Map<String, String> _qaPairs = {
-    'who are you?': 'I\'m a friendly chatbot!',
-    'hi': 'Hello!',
-    'hello': 'Hi!',
-    'something else':
-        'Please contact our support for further assistance: 7356 1111 28',
-    'i love u': 'love u more.....'
+    'what is avanzo?':
+        'We are in a rapid digital transformation phase where everyone – ‘Grocer to Tailor to Hair stylist to MSMEs’ and Corporates – All shifting to the Digital platform. Every business now is going to be governed by Data. Hence, in this “Data Driven Economy”, “Data Security” is of paramount importance to any organization irrespective of its size.',
+    'who is the founder of avanzo?':
+        'Avanzo was founded by Pattathil Dhanya Menon and the cofounders where late venugopal menon and late santhosh vk in 2010',
+    'is avanzo a cyber security company?':
+        'Avanzo is a cybersecurity company based on Thrissur,kerala.it works on the platforms of cybersecurity audit,vulnerability assessment and penetration testing',
+    'when did avanzo establish?': '2010',
+    'where is avanzo located?': 'Thrissur, Kerala',
+    'is avanzo customer friendly?':
+        'Yes Avanzo is customer friendly and our focus is on delivering our best in the interest of our clients',
+    'how can you contact avanzo?':
+        'Email: avanzonet@gmail.com\nWebsite: https://avanzo.in\nPhone: +91 7356 1111 28',
+    'how many staff are in avanzo?':
+        'We have a good team size in our various verticals and we are growing every day',
+    'is avanzo a legal company?': 'It'
+        's a techno legal company. We provide legal consultation in cyber space',
+    'does avanzo have any vacancy?':
+        'Pls reachout and sent your CV to jobs@avanzo.in',
+    'is it safe to consult avanzo?': 'Very safe',
+    'is avanzo a government authorised company?':
+        'We are a private limited company with 15yrs of experience',
+    'is the avanzo meeting confidential?': 'Yes',
+    'why avanzo?':
+        'At Avanzo,we understand that the rapid evolution of technology brings with it a myriad of challenges and concerns. That’s why we’ve established a dedicated helpline to assist individuals facing cyber-related issues.',
   };
 
   final List<String> _options = [
-    'contact details',
-    'Who are you?',
-    'Hi',
-    'Hello',
-    'Something else',
-    'i love u',
-    'Alo',
+    'what is avanzo?',
+    'Who is the founder of avanzo?',
+    'Is avanzo a cyber security company?',
+    'When did Avanzo establish?',
+    'Where is avanzo located?',
+    'Is avanzo customer friendly?',
+    'How can you contact avanzo?',
+    'How many staff are in avanzo?',
+    'Is avanzo a legal company?',
+    'Does avanzo have any vacancy?',
+    'Is it safe to consult avanzo?',
+    'Is Avanzo a government authorised company?',
+    'Is the avanzo meeting confidential?',
+    'Why avanzo?',
   ];
 
   void _sendMessage(String text) {
     if (text.isEmpty) return;
+
     setState(() {
       _messages.insert(
         0,
@@ -46,33 +74,20 @@ class _ChatScreenState extends State<ChatScreen> {
     });
 
     // Simulate bot response
-    Future.delayed(Duration(milliseconds: 800), () {
+    Future.delayed(const Duration(milliseconds: 800), () {
       String botResponse = _qaPairs[text.toLowerCase()] ??
           'Please contact our support for further assistance: 7356 1111 28';
 
-      if (text.toLowerCase() == 'contact details') {
-        setState(() {
-          _messages.insert(
-            0,
-            Message(
-                text:
-                    'Email: avanzonet@gmail.com\nWebsite: https://avanzo.in\nPhone: +91 7356 1111 28',
-                isUser: false,
-                timestamp: DateTime.now()),
-          );
-        });
-      } else {
-        setState(() {
-          _messages.insert(
-            0,
-            Message(
-              text: botResponse,
-              isUser: false,
-              timestamp: DateTime.now(),
-            ),
-          );
-        });
-      }
+      setState(() {
+        _messages.insert(
+          0,
+          Message(
+            text: botResponse,
+            isUser: false,
+            timestamp: DateTime.now(),
+          ),
+        );
+      });
     });
   }
 
@@ -83,7 +98,7 @@ class _ChatScreenState extends State<ChatScreen> {
       appBar: AppBar(
         leadingWidth: 30,
         leading: IconButton(
-          icon: Icon(Icons.arrow_back, color: Colors.purple),
+          icon: const Icon(Icons.arrow_back, color: Colors.purple),
           onPressed: () {
             Navigator.of(context).pop();
           },
@@ -92,14 +107,14 @@ class _ChatScreenState extends State<ChatScreen> {
         backgroundColor: Colors.purple[50],
         title: Text('Chat with AVANZO',
             style: GoogleFonts.poppins(
-              textStyle: TextStyle(
+              textStyle: const TextStyle(
                   color: Colors.black,
                   fontSize: 20,
                   fontWeight: FontWeight.w800),
             )),
         actions: [
           IconButton(
-            icon: Icon(Icons.delete),
+            icon: const Icon(Icons.delete),
             onPressed: () {
               setState(() {
                 _messages.clear();
@@ -134,17 +149,17 @@ class _ChatScreenState extends State<ChatScreen> {
                                 : Colors.white,
                             borderRadius: BorderRadius.circular(15),
                           ),
-                          padding: EdgeInsets.symmetric(
+                          padding: const EdgeInsets.symmetric(
                               horizontal: 15, vertical: 10),
                           child: Text(_messages[index].text,
                               style: GoogleFonts.poppins(
-                                textStyle: TextStyle(
+                                textStyle: const TextStyle(
                                     color: Colors.black,
                                     fontSize: 16,
                                     fontWeight: FontWeight.w400),
                               )),
                         ),
-                        SizedBox(height: 5),
+                        const SizedBox(height: 5),
                         Text(
                           DateFormat('hh:mm a')
                               .format(_messages[index].timestamp),
@@ -160,9 +175,9 @@ class _ChatScreenState extends State<ChatScreen> {
               },
             ),
           ),
-          Divider(height: 1),
+          const Divider(height: 1),
           Container(
-            padding: EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+            padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
             child: Column(
               children: [
                 Row(
@@ -177,37 +192,43 @@ class _ChatScreenState extends State<ChatScreen> {
                             borderSide: BorderSide.none,
                           ),
                           filled: true,
-                          contentPadding: EdgeInsets.symmetric(horizontal: 20),
+                          contentPadding:
+                              const EdgeInsets.symmetric(horizontal: 20),
                         ),
                       ),
                     ),
                     IconButton(
                       color: Colors.black,
                       iconSize: 25,
-                      icon: Icon(Icons.send),
+                      icon: const Icon(Icons.send),
                       onPressed: () => _sendMessage(_controller.text),
                     ),
                   ],
                 ),
-                SizedBox(height: 10),
-                Wrap(
-                  spacing: 10,
-                  children: _options.map((option) {
-                    return ActionChip(
-                      label: Text(
-                        option,
-                        style: GoogleFonts.poppins(
-                          textStyle: TextStyle(
-                              //  color: Colors.black,
-                              fontSize: 16,
-                              fontWeight: FontWeight.w400),
-                        ),
-                      ),
-                      onPressed: () {
-                        _sendMessage(option);
-                      },
-                    );
-                  }).toList(),
+                const SizedBox(height: 10),
+                SizedBox(
+                  height: MediaQuery.sizeOf(context).height * .25,
+                  child: SingleChildScrollView(
+                    child: Wrap(
+                      spacing: 10,
+                      children: _options.map((option) {
+                        return ActionChip(
+                          label: Text(
+                            option,
+                            style: GoogleFonts.poppins(
+                              textStyle: const TextStyle(
+                                  //  color: Colors.black,
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.w400),
+                            ),
+                          ),
+                          onPressed: () {
+                            _sendMessage(option);
+                          },
+                        );
+                      }).toList(),
+                    ),
+                  ),
                 ),
               ],
             ),

@@ -18,37 +18,37 @@ class _InterestingPageState extends State<InterestingPage> {
   @override
   Widget build(BuildContext context) {
     List<Widget> homepageList = [
-      FancyCard(
+      const FancyCard(
         image:
             "https://media.geeksforgeeks.org/wp-content/uploads/20230622121746/global-data-security-personal-data-security-cyber-data-security-online-concept-illustration-internet-security-information-privacy-protection_1150-37368.webp",
         title: "Phishing",
         index: 0,
       ),
-      FancyCard(
+      const FancyCard(
         image:
             "https://media.licdn.com/dms/image/D5612AQFZFNLPMuCSrQ/article-cover_image-shrink_720_1280/0/1681719119695?e=2147483647&v=beta&t=Dd8RvdVNoMCnWr7mMiSTF-w05kjzeiiWL-dTw9pUTK0",
         title: "Encryption",
         index: 1,
       ),
-      FancyCard(
+      const FancyCard(
         image:
             "https://imageio.forbes.com/specials-images/imageserve/64b5825a5b9b4d3225e9bd15/0x0.jpg?format=jpg&height=900&width=1600&fit=bounds",
         title: "AI",
         index: 2,
       ),
-      FancyCard(
+      const FancyCard(
         image:
             "https://www.shutterstock.com/image-vector/malware-icon-vector-isolated-on-260nw-1177007695.jpg",
         title: "Malware",
         index: 3,
       ),
-      FancyCard(
+      const FancyCard(
         image:
             "https://media.istockphoto.com/id/1383553886/vector/abstract-banner-cyber-security-in-3d-style-communication-technology-database-system.jpg?s=612x612&w=0&k=20&c=H_EGuMLGF8qTCp_aqYHIyYgUUz-V66gSGffmHV8elOw=",
         title: "Cyber Security",
         index: 4,
       ),
-      FancyCard(
+      const FancyCard(
         image:
             "https://www.niet.co.in/blog/wp-content/uploads/2020/09/robotics_Blog-1.jpg",
         title: "Robotics",
@@ -56,11 +56,10 @@ class _InterestingPageState extends State<InterestingPage> {
       ),
     ];
     return Scaffold(
-
         // backgroundColor: Colors.purple,
         body: Column(
       children: [
-        SizedBox(
+        const SizedBox(
           height: 15,
         ),
         // Text(
@@ -72,7 +71,7 @@ class _InterestingPageState extends State<InterestingPage> {
         // ),
         Expanded(
           child: StackedCardCarousel(
-            //   pageController: PageController(),
+            pageController: PageController(),
             type: StackedCardCarouselType.fadeOutStack,
             items: List.generate(
               BottomSheetContainer.info.length,
@@ -138,7 +137,6 @@ class _InterestingPageState extends State<InterestingPage> {
 //               ),
 //             ),
 //           ),
-//         ]),
 //       ),
 //     );
 //   }
@@ -172,7 +170,7 @@ class FancyCard extends StatelessWidget {
               width: 250,
               height: 250,
               clipBehavior: Clip.antiAlias,
-              decoration: BoxDecoration(
+              decoration: const BoxDecoration(
                   // border: Border.all(color: Colors.black),
                   borderRadius: BorderRadius.only(
                       topLeft: Radius.circular(50),
@@ -185,7 +183,7 @@ class FancyCard extends StatelessWidget {
             Text(
               title,
               style: GoogleFonts.poppins(
-                  textStyle: TextStyle(
+                  textStyle: const TextStyle(
                 fontSize: 16,
                 fontWeight: FontWeight.w600,
               )),
@@ -229,7 +227,8 @@ Future<dynamic> FactsBottomSheet(BuildContext context, int index) {
                       // textAlign: TextAlign.justify,
                       BottomSheetContainer.info[index]['des'][check]
                           ['question'],
-                      style: TextStyle(fontSize: 30, color: Colors.purple),
+                      style:
+                          const TextStyle(fontSize: 30, color: Colors.purple),
                     ),
                     subtitle: Text(
                       textAlign: TextAlign.justify,
@@ -244,7 +243,7 @@ Future<dynamic> FactsBottomSheet(BuildContext context, int index) {
                     ),
                   );
                 },
-                separatorBuilder: (context, index) => SizedBox(
+                separatorBuilder: (context, index) => const SizedBox(
                   height: 10,
                 ),
               ),

@@ -2,7 +2,7 @@
 import 'package:flutter/material.dart';
 
 class ContainerWidget extends StatelessWidget {
-  ContainerWidget(
+  const ContainerWidget(
       {super.key,
       required this.index,
       this.image,
@@ -16,7 +16,7 @@ class ContainerWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       width: width,
-      decoration: BoxDecoration(
+      decoration: const BoxDecoration(
           // color: const Color.fromARGB(255, 201, 115, 216),
           // borderRadius: BorderRadius.circular(15)
           ),
@@ -33,8 +33,13 @@ class ContainerWidget extends StatelessWidget {
                             borderRadius: BorderRadius.circular(10)),
                         height: constraints.maxHeight * .71,
                         width: constraints.maxWidth),
-                    Spacer(),
+                    const Spacer(),
                     Container(
+                        decoration: BoxDecoration(
+                            color: const Color.fromARGB(255, 201, 115, 216),
+                            borderRadius: BorderRadius.circular(10)),
+                        height: constraints.maxHeight * .26,
+                        width: constraints.maxWidth,
                         child: Center(
                           child: Text(
                             insidetext,
@@ -43,18 +48,18 @@ class ContainerWidget extends StatelessWidget {
                               fontSize: 14,
                             ),
                           ),
-                        ),
-                        decoration: BoxDecoration(
-                            color: Color.fromARGB(255, 201, 115, 216),
-                            borderRadius: BorderRadius.circular(10)),
-                        height: constraints.maxHeight * .26,
-                        width: constraints.maxWidth)
+                        ))
                   ],
                 )
               : Column(
                   mainAxisSize: MainAxisSize.min,
                   children: [
                     Container(
+                        decoration: BoxDecoration(
+                            color: const Color.fromARGB(255, 201, 115, 216),
+                            borderRadius: BorderRadius.circular(10)),
+                        height: constraints.maxHeight * .26,
+                        width: constraints.maxWidth,
                         child: Center(
                           child: Text(
                             insidetext,
@@ -63,13 +68,8 @@ class ContainerWidget extends StatelessWidget {
                               fontSize: 14,
                             ),
                           ),
-                        ),
-                        decoration: BoxDecoration(
-                            color: const Color.fromARGB(255, 201, 115, 216),
-                            borderRadius: BorderRadius.circular(10)),
-                        height: constraints.maxHeight * .26,         
-                        width: constraints.maxWidth),
-                    Spacer(),
+                        )),
+                    const Spacer(),
                     Container(
                         decoration: BoxDecoration(
                             image: DecorationImage(

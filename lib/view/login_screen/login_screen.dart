@@ -40,7 +40,7 @@ class _LoginScreenState extends State<LoginScreen> {
     if (box1.get('isLoggedIn') == true) {
       Navigator.pushReplacement(
         context,
-        MaterialPageRoute(builder: (context) => BottomNavigationScreen()),
+        MaterialPageRoute(builder: (context) => const BottomNavigationScreen()),
       );
     } else {
       getdata();
@@ -61,6 +61,7 @@ class _LoginScreenState extends State<LoginScreen> {
   }
 
   Future<void> insertrecord() async {
+    print("object");
     if (loginusernamecontroller.text.isNotEmpty &&
         loginpasswordcontroller.text.isNotEmpty) {
       try {
@@ -71,7 +72,6 @@ class _LoginScreenState extends State<LoginScreen> {
           "loginpasswordcontroller": loginpasswordcontroller.text
         });
         var response = "success";
-        var resp = "WRONG CREDENTIALS";
 
         if (res.body == response) {
           print("Record inserted");
@@ -82,7 +82,7 @@ class _LoginScreenState extends State<LoginScreen> {
             box1.put('pass', loginpasswordcontroller.text);
           }
           ScaffoldMessenger.of(context).showSnackBar(
-            SnackBar(
+            const SnackBar(
               content: Text(
                 "Login Successfully",
                 style: TextStyle(color: Colors.green),
@@ -90,21 +90,23 @@ class _LoginScreenState extends State<LoginScreen> {
               duration: Duration(milliseconds: 1500),
             ),
           );
-          Future.delayed(Duration(milliseconds: 1500), () {
+          Future.delayed(const Duration(milliseconds: 1500), () {
             Navigator.pushAndRemoveUntil(
                 context,
                 MaterialPageRoute(
-                    builder: (context) => BottomNavigationScreen()),
+                    builder: (context) => const BottomNavigationScreen()),
                 (route) => false);
           });
           loginpasswordcontroller.clear();
           loginusernamecontroller.clear();
-        } else if (res.body == resp) {
+        } else {
+          print("result: ${res.body}");
           ScaffoldMessenger.of(context).showSnackBar(
-            SnackBar(
+            const SnackBar(
+              backgroundColor: Colors.red,
               content: Text(
                 "Login Unsuccessful",
-                style: TextStyle(color: Colors.red),
+                style: TextStyle(color: Colors.white),
               ),
               duration: Duration(seconds: 2),
             ),
@@ -136,12 +138,12 @@ class _LoginScreenState extends State<LoginScreen> {
             Navigator.pushReplacement(
               context,
               MaterialPageRoute(
-                builder: (context) => BottomNavigationScreen(),
+                builder: (context) => const BottomNavigationScreen(),
               ),
             );
           }
           ScaffoldMessenger.of(context).showSnackBar(
-            SnackBar(
+            const SnackBar(
               content: Text(
                 "Login Successfully",
                 style: TextStyle(color: Colors.green),
@@ -149,24 +151,24 @@ class _LoginScreenState extends State<LoginScreen> {
               duration: Duration(milliseconds: 1500),
             ),
           );
-          Future.delayed(Duration(milliseconds: 1500), () {
+          Future.delayed(const Duration(milliseconds: 1500), () {
             Navigator.pushAndRemoveUntil(
                 context,
                 MaterialPageRoute(
-                    builder: (context) => BottomNavigationScreen()),
+                    builder: (context) => const BottomNavigationScreen()),
                 (route) => false);
-          });       
+          });
           usernamecontroller.clear();
         } else if (res.body == resp) {
           ScaffoldMessenger.of(context).showSnackBar(
-            SnackBar(
+            const SnackBar(
               content: Text(
                 "Login Unsuccessful",
                 style: TextStyle(color: Colors.red),
               ),
               duration: Duration(seconds: 2),
             ),
-          ); 
+          );
         }
       } catch (e) {
         print(e);
@@ -182,7 +184,7 @@ class _LoginScreenState extends State<LoginScreen> {
       backgroundColor: Colors.white,
       appBar: AppBar(
         backgroundColor: ColorConstant.pantonebackground,
-        actions: [Text("Version 1.0.0")],
+        actions: const [Text("Version 1.0.0")],
       ),
       body: SingleChildScrollView(
         padding:
@@ -194,7 +196,7 @@ class _LoginScreenState extends State<LoginScreen> {
             children: [
               Column(
                 children: [
-                  SizedBox(
+                  const SizedBox(
                     height: 30,
                   ),
                   Image.asset(
@@ -208,15 +210,15 @@ class _LoginScreenState extends State<LoginScreen> {
                   //       fontWeight: FontWeight.w900,
                   //       fontSize: 40),
                   // ),
-                  SizedBox(
+                  const SizedBox(
                     height: 20,
                   ),
                   Padding(
                     padding: const EdgeInsets.all(12),
                     child: TextFormField(
-                        style: TextStyle(color: Colors.black),
+                        style: const TextStyle(color: Colors.black),
                         controller: loginusernamecontroller,
-                        decoration: InputDecoration(
+                        decoration: const InputDecoration(
                             hintText: "Username",
                             hintStyle: TextStyle(color: Colors.black54),
                             border: OutlineInputBorder()),
@@ -228,13 +230,13 @@ class _LoginScreenState extends State<LoginScreen> {
                           }
                         }),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 10,
                   ),
                   Padding(
                     padding: const EdgeInsets.all(12),
                     child: TextFormField(
-                      style: TextStyle(color: Colors.black),
+                      style: const TextStyle(color: Colors.black),
                       obscureText: passwordVisible,
                       controller: loginpasswordcontroller,
                       decoration: InputDecoration(
@@ -249,8 +251,8 @@ class _LoginScreenState extends State<LoginScreen> {
                                 : Icons.visibility_off),
                           ),
                           hintText: "Password",
-                          hintStyle: TextStyle(color: Colors.black54),
-                          border: OutlineInputBorder()),
+                          hintStyle: const TextStyle(color: Colors.black54),
+                          border: const OutlineInputBorder()),
                       validator: (value) {
                         if (value != null && value.length >= 7) {
                           return null;
@@ -265,7 +267,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      Text(
+                      const Text(
                         "Remember Me",
                         style: TextStyle(color: ColorConstant.mainblack),
                       ),
@@ -284,9 +286,9 @@ class _LoginScreenState extends State<LoginScreen> {
                                   context,
                                   MaterialPageRoute(
                                       builder: (context) =>
-                                          ForgotPasswordScreen()));
+                                          const ForgotPasswordScreen()));
                             },
-                            child: Text(
+                            child: const Text(
                               "Forgot Password",
                               style: TextStyle(
                                   color: ColorConstant.darkpurple,
@@ -297,7 +299,8 @@ class _LoginScreenState extends State<LoginScreen> {
                   ),
                   ElevatedButton(
                       style: ButtonStyle(
-                          fixedSize: WidgetStateProperty.all(Size(330, 50)),
+                          fixedSize:
+                              WidgetStateProperty.all(const Size(330, 50)),
                           backgroundColor: WidgetStateProperty.all(
                               ColorConstant.darkpurple)),
                       onPressed: () {
@@ -305,15 +308,15 @@ class _LoginScreenState extends State<LoginScreen> {
                           insertrecord();
                         }
                       },
-                      child: Text(
+                      child: const Text(
                         "Login",
                         style: TextStyle(
                             fontSize: 15, color: ColorConstant.mainwhite),
                       )),
-                  SizedBox(
+                  const SizedBox(
                     height: 5,
                   ),
-                  Text(
+                  const Text(
                     "Login with Biometrics",
                     style: TextStyle(color: ColorConstant.mainblack),
                   ),
@@ -326,7 +329,7 @@ class _LoginScreenState extends State<LoginScreen> {
                               key: _bioFormKey,
                               child: TextFormField(
                                   controller: usernamecontroller,
-                                  decoration: InputDecoration(
+                                  decoration: const InputDecoration(
                                     border: OutlineInputBorder(),
                                     hintText: "Username",
                                   ),
@@ -345,7 +348,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                       biometricAuth();
                                     }
                                   },
-                                  icon: Icon(
+                                  icon: const Icon(
                                     Icons.fingerprint,
                                     color: ColorConstant.mainblack,
                                     size: 50,
@@ -357,7 +360,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         // bool isLoggedIn = box.get('termsAccepted');
                         // if (isLoggedIn) {
                       },
-                      icon: Icon(
+                      icon: const Icon(
                         Icons.fingerprint,
                         color: ColorConstant.mainblack,
                         size: 50,
@@ -365,7 +368,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      Text(
+                      const Text(
                         "Don't have an account?",
                         style: TextStyle(color: ColorConstant.mainblack),
                       ),
@@ -374,9 +377,10 @@ class _LoginScreenState extends State<LoginScreen> {
                             Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                    builder: (context) => SignUpScreen()));
+                                    builder: (context) =>
+                                        const SignUpScreen()));
                           },
-                          child: Text(
+                          child: const Text(
                             "Signup",
                             style: TextStyle(
                                 color: ColorConstant.darkpurple,
@@ -384,7 +388,7 @@ class _LoginScreenState extends State<LoginScreen> {
                           ))
                     ],
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 28,
                   ),
                 ],
@@ -393,7 +397,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 color: ColorConstant.mainblack,
                 height: 50,
                 width: double.infinity,
-                child: Center(
+                child: const Center(
                   child: Text(
                     "Developed by Avanzo Cyber Security Solutions",
                     style:

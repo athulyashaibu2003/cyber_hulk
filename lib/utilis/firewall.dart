@@ -17,7 +17,6 @@ class _FireWalltextState extends State<FireWalltext> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
@@ -29,7 +28,7 @@ class _FireWalltextState extends State<FireWalltext> {
                       subtitle: Text(ContainerText.firewallInfo[index]["answer"]
                           .toString()),
                     ),
-                separatorBuilder: (context, index) => SizedBox(
+                separatorBuilder: (context, index) => const SizedBox(
                       height: 10,
                     ),
                 itemCount: ContainerText.firewallInfo.length),

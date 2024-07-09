@@ -51,13 +51,14 @@ class TermsConditionsScreen extends StatelessWidget {
             print("Record inserted");
             Navigator.pushAndRemoveUntil(
                 context,
-                MaterialPageRoute(builder: (context) => DashboardScreen()),
+                MaterialPageRoute(
+                    builder: (context) => const DashboardScreen()),
                 (route) => false);
           }
           if (res.body == resp) {
             Navigator.pushAndRemoveUntil(
                 context,
-                MaterialPageRoute(builder: (context) => LoginScreen()),
+                MaterialPageRoute(builder: (context) => const LoginScreen()),
                 (route) => false);
           }
         } catch (e) {
@@ -70,20 +71,20 @@ class TermsConditionsScreen extends StatelessWidget {
 
     return Scaffold(
         appBar: AppBar(
-          title: Text("Terms and Conditions"),
+          title: const Text("Terms and Conditions"),
         ),
         body: Padding(
             padding: const EdgeInsets.all(16.0),
             child: SingleChildScrollView(
               child: Column(children: [
-                Text(
+                const Text(
                   "CyberHulk - Terms and Conditions",
                   style: TextStyle(
                       fontSize: 20,
                       fontWeight: FontWeight.bold,
                       color: ColorConstant.mainblack),
                 ),
-                Text(
+                const Text(
                   """
            
                         1. Introduction
@@ -169,10 +170,10 @@ responsible for any direct or indirect damages caused without proper usage of th
                         Navigator.pushReplacement(
                           context,
                           MaterialPageRoute(
-                              builder: (context) => LoginScreen()),
+                              builder: (context) => const LoginScreen()),
                         );
                       },
-                      child: Text("Accept"),
+                      child: const Text("Accept"),
                     ),
                     ElevatedButton(
                       onPressed: () {
@@ -203,14 +204,14 @@ responsible for any direct or indirect damages caused without proper usage of th
                                   onPressed: () {
                                     Navigator.pop(context);
                                   },
-                                  child: Text("OK"),
+                                  child: const Text("OK"),
                                 ),
                               ],
                             );
                           },
                         );
                       },
-                      child: Text("Decline"),
+                      child: const Text("Decline"),
                     ),
                   ],
                 ),

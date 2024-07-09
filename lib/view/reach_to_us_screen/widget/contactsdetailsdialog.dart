@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class ContactDetailsDialog extends StatelessWidget {
-  const ContactDetailsDialog({Key? key}) : super(key: key);
+  const ContactDetailsDialog({super.key});
 
   Future<void> sendMailto({String email = "avanzonet@gmail.com"}) async {
     final Uri parsedMailto = Uri(
@@ -33,12 +33,12 @@ class ContactDetailsDialog extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
-      title: Text("Contact Details"),
+      title: const Text("Contact Details"),
       content: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
           // Text("Contact Details", style: TextStyle(color: Colors.black)),
-          SizedBox(height: 20),
+          const SizedBox(height: 20),
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             mainAxisSize: MainAxisSize.min,
@@ -50,7 +50,7 @@ class ContactDetailsDialog extends StatelessWidget {
                 child: Container(
                   height: 30,
                   width: 30,
-                  decoration: BoxDecoration(
+                  decoration: const BoxDecoration(
                     image: DecorationImage(
                       image: NetworkImage(
                           "https://static.vecteezy.com/system/resources/previews/022/484/516/original/google-mail-gmail-icon-logo-symbol-free-png.png"),
@@ -58,12 +58,12 @@ class ContactDetailsDialog extends StatelessWidget {
                   ),
                 ),
               ),
-              SizedBox(width: 10),
+              const SizedBox(width: 10),
               InkWell(
                 onTap: () {
                   _launchInBrowser(Uri.parse("https://avanzo.in/"));
                 },
-                child: Container(
+                child: SizedBox(
                   height: 30,
                   width: 30,
                   child: Image.network(
@@ -72,7 +72,7 @@ class ContactDetailsDialog extends StatelessWidget {
                   ),
                 ),
               ),
-              SizedBox(width: 10),
+              const SizedBox(width: 10),
               InkWell(
                 onTap: () {
                   _makePhoneCall("+91 7356 1111 28");
@@ -80,7 +80,7 @@ class ContactDetailsDialog extends StatelessWidget {
                 child: Container(
                   height: 30,
                   width: 30,
-                  decoration: BoxDecoration(
+                  decoration: const BoxDecoration(
                     image: DecorationImage(
                       image: NetworkImage(
                           "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSqvIH0qQEwp_XV51RMqRW30rtrLvU0EI9wTg&s"),
@@ -97,7 +97,7 @@ class ContactDetailsDialog extends StatelessWidget {
           onPressed: () {
             Navigator.of(context).pop();
           },
-          child: Text("Close"),
+          child: const Text("Close"),
         ),
       ],
     );

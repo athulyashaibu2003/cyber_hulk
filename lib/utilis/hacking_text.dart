@@ -17,7 +17,6 @@ class _HackingtextState extends State<Hackingtext> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
@@ -29,7 +28,7 @@ class _HackingtextState extends State<Hackingtext> {
                       subtitle: Text(ContainerText.hackingInfo[index]["answer"]
                           .toString()),
                     ),
-                separatorBuilder: (context, index) => SizedBox(
+                separatorBuilder: (context, index) => const SizedBox(
                       height: 10,
                     ),
                 itemCount: ContainerText.hackingInfo.length),

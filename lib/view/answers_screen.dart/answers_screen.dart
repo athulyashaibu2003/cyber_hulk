@@ -21,7 +21,7 @@ class _AnswersscreenState extends State<Answersscreen> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: ColorConstant.pantonemessage,
-        actions: [
+        actions: const [
           Text(
             "Version 1.0.0",
             style: TextStyle(color: ColorConstant.mainblack),
@@ -36,6 +36,11 @@ class _AnswersscreenState extends State<Answersscreen> {
                 Container(
                   width: double.infinity,
                   height: 250,
+                  decoration: const BoxDecoration(
+                      color: ColorConstant.pantonemessage,
+                      borderRadius: BorderRadius.only(
+                          bottomLeft: Radius.circular(70),
+                          bottomRight: Radius.circular(70))),
                   child: Padding(
                     padding: const EdgeInsets.all(15),
                     child: Center(
@@ -50,11 +55,6 @@ class _AnswersscreenState extends State<Answersscreen> {
                           fontWeight: FontWeight.bold),
                     )),
                   ),
-                  decoration: BoxDecoration(
-                      color: ColorConstant.pantonemessage,
-                      borderRadius: BorderRadius.only(
-                          bottomLeft: Radius.circular(70),
-                          bottomRight: Radius.circular(70))),
                 ),
                 Column(
                   // mainAxisSize: MainAxisSize.max,
@@ -63,20 +63,22 @@ class _AnswersscreenState extends State<Answersscreen> {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         IconButton(
-                          icon: Icon(Icons.zoom_out),
+                          icon: const Icon(Icons.zoom_out),
                           onPressed: () {
                             setState(() {
-                              if (_fontSize > 12)
+                              if (_fontSize > 12) {
                                 _fontSize -= 2; // Decrease font size
+                              }
                             });
                           },
                         ),
                         IconButton(
-                          icon: Icon(Icons.zoom_in),
+                          icon: const Icon(Icons.zoom_in),
                           onPressed: () {
                             setState(() {
-                              if (_fontSize < 30)
+                              if (_fontSize < 30) {
                                 _fontSize += 2; // Increase font size
+                              }
                             });
                           },
                         ),

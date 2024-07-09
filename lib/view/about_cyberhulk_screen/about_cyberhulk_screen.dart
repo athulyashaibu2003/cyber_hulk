@@ -57,7 +57,7 @@ class _AboutCyberHulkScreenState extends State<AboutCyberHulkScreen>
     await box1.clear();
     Navigator.pushAndRemoveUntil(
       context,
-      MaterialPageRoute(builder: (context) => LoginScreen()),
+      MaterialPageRoute(builder: (context) => const LoginScreen()),
       (route) => false,
     );
   }
@@ -83,7 +83,7 @@ class _AboutCyberHulkScreenState extends State<AboutCyberHulkScreen>
               child: Container(
                 height: size.height * 0.25,
                 width: size.width * 0.5,
-                decoration: BoxDecoration(
+                decoration: const BoxDecoration(
                     image: DecorationImage(
                         image: AssetImage(
                           "assets/images/CH green final.png",
@@ -120,12 +120,29 @@ class _AboutCyberHulkScreenState extends State<AboutCyberHulkScreen>
                 );
               },
             ),
+            const SizedBox(
+              height: 10,
+            ),
+            const Text.rich(
+                textAlign: TextAlign.justify,
+                TextSpan(children: [
+                  TextSpan(
+                      text: "DISCLAIMER: ",
+                      style: TextStyle(
+                        fontSize: 16,
+                        fontWeight: FontWeight.w700,
+                      )),
+                  TextSpan(
+                      text:
+                          "No Copyright infringement is intended. All the answers provided in this Application is collected from diffrent public platforms.",
+                      style: TextStyle(fontSize: 15)),
+                ])),
             TextButton(
               onPressed: () {
                 Navigator.push(context,
                     MaterialPageRoute(builder: (context) => Termsforread()));
               },
-              child: Text(
+              child: const Text(
                 "Terms and conditions",
                 style: TextStyle(
                     fontWeight: FontWeight.bold,
@@ -133,17 +150,17 @@ class _AboutCyberHulkScreenState extends State<AboutCyberHulkScreen>
                     color: ColorConstant.darkpurple),
               ),
             ),
-            SizedBox(
+            const SizedBox(
               height: 25,
             ),
             OutlinedButton(
               style: ButtonStyle(
                 side: WidgetStateProperty.all(
-                  BorderSide(color: ColorConstant.darkpurple),
+                  const BorderSide(color: ColorConstant.darkpurple),
                 ),
               ),
               onPressed: logout,
-              child: Text(
+              child: const Text(
                 "Logout",
                 style: TextStyle(color: ColorConstant.darkpurple),
               ),

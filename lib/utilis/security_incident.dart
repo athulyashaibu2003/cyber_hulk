@@ -17,7 +17,6 @@ class _SecurityincidenttextState extends State<Securityincidenttext> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-     
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
@@ -31,7 +30,7 @@ class _SecurityincidenttextState extends State<Securityincidenttext> {
                           .securityIncidentCyberSecurityInfo[index]["answer"]
                           .toString()),
                     ),
-                separatorBuilder: (context, index) => SizedBox(
+                separatorBuilder: (context, index) => const SizedBox(
                       height: 10,
                     ),
                 itemCount:

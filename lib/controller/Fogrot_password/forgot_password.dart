@@ -46,7 +46,7 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
         if (res.body == response) {
           //  print("Record inserted");
           ScaffoldMessenger.of(context).showSnackBar(
-            SnackBar(
+            const SnackBar(
               content: Text(
                 "Reset Successful",
                 style: TextStyle(color: Colors.green),
@@ -54,15 +54,15 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
               duration: Duration(seconds: 2),
             ),
           );
-          Future.delayed(Duration(milliseconds: 10), () {
+          Future.delayed(const Duration(milliseconds: 10), () {
             Navigator.pushAndRemoveUntil(
                 context,
-                MaterialPageRoute(builder: (context) => LoginScreen()),
+                MaterialPageRoute(builder: (context) => const LoginScreen()),
                 (route) => false);
           });
         } else {
           ScaffoldMessenger.of(context).showSnackBar(
-            SnackBar(
+            const SnackBar(
               content: Text(
                 "Reset UnSuccessful",
                 style: TextStyle(color: Colors.red),
@@ -70,10 +70,11 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
               duration: Duration(seconds: 2),
             ),
           );
-          Future.delayed(Duration(milliseconds: 10), () {
+          Future.delayed(const Duration(milliseconds: 10), () {
             Navigator.pushAndRemoveUntil(
                 context,
-                MaterialPageRoute(builder: (context) => ForgotPasswordScreen()),
+                MaterialPageRoute(
+                    builder: (context) => const ForgotPasswordScreen()),
                 (route) => false);
           });
         }
@@ -91,7 +92,7 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
       backgroundColor: Colors.white,
       appBar: AppBar(
         backgroundColor: ColorConstant.pantonebackground,
-        title: Text(
+        title: const Text(
           "Forgot Password",
           style: TextStyle(
               fontWeight: FontWeight.bold, color: ColorConstant.darkpurple),
@@ -103,13 +104,13 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
           child: Column(
             //  mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              SizedBox(
+              const SizedBox(
                 height: 60,
               ),
               Padding(
                 padding: const EdgeInsets.only(left: 50, right: 50, bottom: 10),
                 child: TextFormField(
-                    style: TextStyle(color: Colors.black),
+                    style: const TextStyle(color: Colors.black),
                     controller: loginusernamecontroller,
                     decoration: const InputDecoration(
                         hintText: "User Name",
@@ -123,13 +124,13 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
                       }
                     }),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 15,
               ),
               Padding(
                 padding: const EdgeInsets.only(left: 50, right: 50, bottom: 10),
                 child: TextFormField(
-                  style: TextStyle(color: Colors.black),
+                  style: const TextStyle(color: Colors.black),
                   //   controller: mailidcontroller,
                   decoration: const InputDecoration(
                       hintText: "Email Id",
@@ -138,13 +139,13 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
                   validator: validateEmail,
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 15,
               ),
               Padding(
                 padding: const EdgeInsets.only(left: 50, right: 50, bottom: 10),
                 child: TextFormField(
-                  style: TextStyle(color: Colors.black),
+                  style: const TextStyle(color: Colors.black),
                   obscureText: passwordVisible,
                   controller: passwordconttroller,
                   decoration: InputDecoration(
@@ -159,8 +160,8 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
                             : Icons.visibility_off),
                       ),
                       hintText: "Password",
-                      hintStyle: TextStyle(color: Colors.black54),
-                      border: OutlineInputBorder()),
+                      hintStyle: const TextStyle(color: Colors.black54),
+                      border: const OutlineInputBorder()),
                   validator: (value) {
                     if (value != null && value.length >= 7) {
                       return null;
@@ -172,15 +173,15 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
                   textInputAction: TextInputAction.done,
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 15,
               ),
               Padding(
                 padding: const EdgeInsets.only(left: 50, right: 50, bottom: 10),
                 child: TextFormField(
-                    style: TextStyle(color: Colors.black),
+                    style: const TextStyle(color: Colors.black),
                     controller: conpasswordcontroller,
-                    decoration: InputDecoration(
+                    decoration: const InputDecoration(
                         hintText: "Confirm Pssword",
                         hintStyle: TextStyle(color: Colors.black54),
                         border: OutlineInputBorder()),
@@ -192,12 +193,12 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
                       }
                     }),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 10,
               ),
               ElevatedButton(
                   style: ButtonStyle(
-                      fixedSize: WidgetStateProperty.all(Size(330, 50)),
+                      fixedSize: WidgetStateProperty.all(const Size(330, 50)),
                       backgroundColor:
                           WidgetStateProperty.all(ColorConstant.darkpurple)),
                   onPressed: () async {
@@ -226,7 +227,7 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
                     _formkey.currentState!.validate();
                     insertrecord();
                   },
-                  child: Text(
+                  child: const Text(
                     "Reset",
                     style:
                         TextStyle(fontSize: 15, color: ColorConstant.mainwhite),

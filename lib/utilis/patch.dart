@@ -17,7 +17,6 @@ class _PatchtextState extends State<Patchtext> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
@@ -29,7 +28,7 @@ class _PatchtextState extends State<Patchtext> {
                       subtitle: Text(
                           ContainerText.patchInfo[index]["answer"].toString()),
                     ),
-                separatorBuilder: (context, index) => SizedBox(
+                separatorBuilder: (context, index) => const SizedBox(
                       height: 10,
                     ),
                 itemCount: ContainerText.patchInfo.length),

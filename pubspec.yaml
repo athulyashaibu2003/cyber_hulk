@@ -48,11 +48,12 @@ dependencies:
   typewritertext: ^3.0.5
   google_fonts: ^6.2.1
   webview_flutter: ^4.8.0
-  carousel_slider: ^4.2.1
+  carousel_slider: ^4.2.1 
   curved_navigation_bar: ^1.0.4
   flutter_launcher_icons: ^0.13.1
   intl: ^0.17.0
-  stacked_card_carousel: ^0.0.4
+  stacked_card_carousel: ^0.0.4 
+  carousel_slider_plus: ^6.0.0
 
 
 dev_dependencies:

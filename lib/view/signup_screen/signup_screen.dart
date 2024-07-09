@@ -37,7 +37,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
       backgroundColor: ColorConstant.mainwhite,
       appBar: AppBar(
         backgroundColor: ColorConstant.pantonemessage,
-        actions: [const Text("Version 1.0.0")],
+        actions: const [Text("Version 1.0.0")],
       ),
       body: SingleChildScrollView(
         // physics: BouncingScrollPhysics(),
@@ -67,7 +67,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     padding:
                         const EdgeInsets.only(left: 50, right: 50, bottom: 10),
                     child: TextFormField(
-                      style: TextStyle(color: Colors.black),
+                      style: const TextStyle(color: Colors.black),
                       controller: firstnamecontroller,
                       decoration: const InputDecoration(
                         hintText: "First name",
@@ -86,7 +86,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     padding:
                         const EdgeInsets.only(left: 50, right: 50, bottom: 10),
                     child: TextFormField(
-                      style: TextStyle(color: Colors.black),
+                      style: const TextStyle(color: Colors.black),
                       controller: lastnamecontroller,
                       decoration: const InputDecoration(
                         hintText: "Last Name",
@@ -101,7 +101,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     padding:
                         const EdgeInsets.only(left: 50, right: 50, bottom: 10),
                     child: TextFormField(
-                        style: TextStyle(color: Colors.black),
+                        style: const TextStyle(color: Colors.black),
                         controller: phnumbercontroller,
                         decoration: const InputDecoration(
                           hintText: "Phone Number",
@@ -122,7 +122,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     padding:
                         const EdgeInsets.only(left: 50, right: 50, bottom: 10),
                     child: TextFormField(
-                      style: TextStyle(color: Colors.black),
+                      style: const TextStyle(color: Colors.black),
                       controller: mailidcontroller,
                       decoration: const InputDecoration(
                         hintText: "Email Id",
@@ -138,7 +138,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     padding:
                         const EdgeInsets.only(left: 50, right: 50, bottom: 10),
                     child: TextFormField(
-                        style: TextStyle(color: Colors.black),
+                        style: const TextStyle(color: Colors.black),
                         controller: usernamecontroller,
                         decoration: const InputDecoration(
                           hintText: "User Name",
@@ -159,7 +159,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     padding:
                         const EdgeInsets.only(left: 50, right: 50, bottom: 10),
                     child: TextFormField(
-                      style: TextStyle(color: Colors.black),
+                      style: const TextStyle(color: Colors.black),
                       obscureText: passwordObscure,
                       controller: passwordcontroller,
                       decoration: InputDecoration(
@@ -174,8 +174,8 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                 : Icons.visibility_off),
                           ),
                           hintText: "Password",
-                          hintStyle: TextStyle(color: Colors.black54),
-                          border: OutlineInputBorder()),
+                          hintStyle: const TextStyle(color: Colors.black54),
+                          border: const OutlineInputBorder()),
                       validator: (value) {
                         if (value != null && value.length >= 7) {
                           return null;
@@ -191,7 +191,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     padding:
                         const EdgeInsets.only(left: 50, right: 50, bottom: 10),
                     child: TextFormField(
-                        style: TextStyle(color: Colors.black),
+                        style: const TextStyle(color: Colors.black),
                         obscureText: passwordObscure,
                         controller: conpasswordcontroller,
                         decoration: const InputDecoration(
@@ -235,7 +235,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                         username:
                                             usernamecontroller.text.trim(),
                                         password:
-                                            passwordcontroller.text.trim(),    
+                                            passwordcontroller.text.trim(),
                                       )),
                               (route) => false);
                         }

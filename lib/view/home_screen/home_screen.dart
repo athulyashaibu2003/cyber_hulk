@@ -4,7 +4,7 @@ import 'package:cyber_hulk/view/intresting_page.dart/widget/container_widget.dar
 import 'package:flutter/material.dart';
 
 class HomeScreen extends StatelessWidget {
-  const HomeScreen({Key? key}) : super(key: key);
+  const HomeScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -18,11 +18,11 @@ class HomeScreen extends StatelessWidget {
           pinned: true,
           actions: [
             ThemeSwitch(),
-            SizedBox(width: 10),
+            const SizedBox(width: 10),
           ],
           flexibleSpace: FlexibleSpaceBar(
             centerTitle: false,
-            title: Text(
+            title: const Text(
               'Interesting Facts',
               style: TextStyle(color: Colors.white),
             ),
@@ -33,10 +33,10 @@ class HomeScreen extends StatelessWidget {
           ),
         ),
         SliverPadding(
-          padding: EdgeInsets.all(30),
+          padding: const EdgeInsets.all(30),
           sliver: SliverGrid.builder(
             itemCount: BottomSheetContainer.info.length,
-            gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+            gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
               crossAxisCount: 2,
               mainAxisSpacing: 30,
               crossAxisSpacing: 30,
