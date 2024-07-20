@@ -64,7 +64,9 @@ class _BottomNavigationScreenState extends State<BottomNavigationScreen> {
                 )
               ],
             ),
-      body: indexnum == 2 ? Container() : screens[indexnum],
+      body:
+          // indexnum == 2 ? Container() :
+          screens[indexnum],
       // bottomNavigationBar: BottomNavigationBar(
       // onTap: (value) {
       //   // if (value == 2) {
@@ -140,13 +142,13 @@ class _BottomNavigationScreenState extends State<BottomNavigationScreen> {
       // floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       bottomNavigationBar: CurvedNavigationBar(
         onTap: (value) {
-          if (value == 2) {
-            _launchUrl();
-          } else {
-            setState(() {
-              indexnum = value;
-            });
-          }
+          // if (value == 2) {
+          //   _launchUrl();
+          // } else {
+          setState(() {
+            indexnum = value;
+          });
+          // }
         },
         letIndexChange: (index) => true,
         index: indexnum,

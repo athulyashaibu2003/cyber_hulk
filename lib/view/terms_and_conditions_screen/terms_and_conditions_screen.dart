@@ -77,14 +77,17 @@ class TermsConditionsScreen extends StatelessWidget {
             padding: const EdgeInsets.all(16.0),
             child: SingleChildScrollView(
               child: Column(children: [
-                const Text(
+                Text(
                   "CyberHulk - Terms and Conditions",
                   style: TextStyle(
-                      fontSize: 20,
-                      fontWeight: FontWeight.bold,
-                      color: ColorConstant.mainblack),
+                    fontSize: 20,
+                    fontWeight: FontWeight.bold,
+                    color: themeProvider.themeMode == ThemeMode.dark
+                        ? ColorConstant.mainwhite
+                        : ColorConstant.mainblack,
+                  ),
                 ),
-                const Text(
+                Text(
                   """
            
                         1. Introduction
@@ -153,11 +156,12 @@ be bound by the terms and conditions of this agreement. However, the App will no
 responsible for any direct or indirect damages caused without proper usage of the app.
       """,
                   style: TextStyle(
-                      fontSize: 16,
-                      // color: themeProvider.themeMode == ThemeMode.dark
-                      //     ? ColorConstant.mainwhite
-                      //     : ColorConstant.mainblack,
-                      color: ColorConstant.mainblack),
+                    fontSize: 16,
+                    color: themeProvider.themeMode == ThemeMode.dark
+                        ? ColorConstant.mainwhite
+                        : ColorConstant.mainblack,
+                    // color: ColorConstant.mainblack
+                  ),
                 ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
