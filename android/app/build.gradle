@@ -56,9 +56,12 @@ android {
         versionName flutterVersionName
     }
 
+<<<<<<< HEAD
         
         
 
+=======
+>>>>>>> 9c1e79072f7a32ca0251a39d8199caada49f19e7
         signingConfigs {
             release {
                keyAlias keystoreProperties['keyAlias']
@@ -76,8 +79,11 @@ android {
                 signingConfig signingConfigs.release
            }
         }
+<<<<<<< HEAD
     
     
+=======
+>>>>>>> 9c1e79072f7a32ca0251a39d8199caada49f19e7
 }
 
 flutter {
