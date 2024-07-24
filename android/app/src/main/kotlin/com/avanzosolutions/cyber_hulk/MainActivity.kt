@@ -1,4 +1,4 @@
-package com.example.cyber_hulk
+package com.avanzosolutions.cyber_hulk
 
 import io.flutter.embedding.android.FlutterFragmentActivity
 
