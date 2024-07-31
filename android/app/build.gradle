@@ -28,7 +28,7 @@ if (flutterVersionName == null) {
     }
 
 android {
-    namespace "com.avanzosolutions.cyber_hulk"
+    namespace "com.cyberhulk"
     compileSdk flutter.compileSdkVersion
     ndkVersion flutter.ndkVersion
 
@@ -47,7 +47,7 @@ android {
 
     defaultConfig {
         // TODO: Specify your own unique Application ID (https://developer.android.com/studio/build/application-id.html).
-        applicationId "com.avanzosolutions.cyber_hulk"
+        applicationId "com.cyberhulk"
         // You can update the following values to match your application needs.
         // For more information, see: https://docs.flutter.dev/deployment/android#reviewing-the-gradle-build-configuration.
         minSdkVersion 21
@@ -55,13 +55,6 @@ android {
         versionCode flutterVersionCode.toInteger()
         versionName flutterVersionName
     }
-
-<<<<<<< HEAD
-        
-        
-
-=======
->>>>>>> 9c1e79072f7a32ca0251a39d8199caada49f19e7
         signingConfigs {
             release {
                keyAlias keystoreProperties['keyAlias']
@@ -79,11 +72,6 @@ android {
                 signingConfig signingConfigs.release
            }
         }
-<<<<<<< HEAD
-    
-    
-=======
->>>>>>> 9c1e79072f7a32ca0251a39d8199caada49f19e7
 }
 
 flutter {

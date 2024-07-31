@@ -388,9 +388,18 @@ class _LoginScreenState extends State<LoginScreen> {
                           ))
                     ],
                   ),
-                  const SizedBox(
-                    height: 28,
-                  ),
+                  TextButton(
+                      onPressed: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) =>
+                                    BottomNavigationScreen()));
+                      },
+                      child: Text("Guest")),
+                  // const SizedBox(
+                  //   height: 28,
+                  // ),
                 ],
               ),
               Container(
