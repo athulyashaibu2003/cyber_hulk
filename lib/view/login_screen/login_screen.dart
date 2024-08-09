@@ -184,7 +184,23 @@ class _LoginScreenState extends State<LoginScreen> {
       backgroundColor: Colors.white,
       appBar: AppBar(
         backgroundColor: ColorConstant.pantonebackground,
-        actions: const [Text("Version 1.0.0")],
+        actions: [
+          const Text("Version 1.0.0"),
+          SizedBox(
+            width: 15,
+          ),
+          TextButton(
+              onPressed: () {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => BottomNavigationScreen()));
+              },
+              child: const Text(
+                "Guest",
+                style: TextStyle(color: ColorConstant.darkpurple),
+              ))
+        ],
       ),
       body: SingleChildScrollView(
         padding:
@@ -388,15 +404,7 @@ class _LoginScreenState extends State<LoginScreen> {
                           ))
                     ],
                   ),
-                  TextButton(
-                      onPressed: () {
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) =>
-                                    BottomNavigationScreen()));
-                      },
-                      child: Text("Guest")),
+
                   // const SizedBox(
                   //   height: 28,
                   // ),

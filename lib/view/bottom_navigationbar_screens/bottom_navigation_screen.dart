@@ -161,25 +161,11 @@ class _BottomNavigationScreenState extends State<BottomNavigationScreen> {
             ),
             size: 30,
           ),
-          // Icon(Icons.home),
           Icon(
             Icons.search,
             size: 30,
           ),
-          // ImageIcon(
-          //   const AssetImage(
-          //     "assets/images/Animation - 1717225115801 (1).gif",
-          //   ),
-          //   size: 50,
-          // ),
           Icon(Icons.newspaper_sharp),
-          // ImageIcon(
-          //   AssetImage(
-          //     "assets/images/CyberHULK Logo final-06.png",
-          //   ),
-          //   size: 50,
-          // ),
-
           ImageIcon(
             AssetImage(
               "assets/images/avzlogo copy.png",
