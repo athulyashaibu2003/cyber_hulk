@@ -186,7 +186,7 @@ class _LoginScreenState extends State<LoginScreen> {
         backgroundColor: ColorConstant.pantonebackground,
         actions: [
           const Text("Version 1.0.0"),
-          SizedBox(
+          const SizedBox(
             width: 15,
           ),
           TextButton(
@@ -194,7 +194,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 Navigator.push(
                     context,
                     MaterialPageRoute(
-                        builder: (context) => BottomNavigationScreen()));
+                        builder: (context) => const BottomNavigationScreen()));
               },
               child: const Text(
                 "Guest",

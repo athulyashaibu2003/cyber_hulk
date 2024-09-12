@@ -56,34 +56,37 @@ class _InterestingPageState extends State<InterestingPage> {
       ),
     ];
     return Scaffold(
+        appBar: AppBar(),
         // backgroundColor: Colors.purple,
         body: Column(
-      children: [
-        const SizedBox(
-          height: 15,
-        ),
-        // Text(
-        //   'Peculiar Findings',
-        //   style: TextStyle(
-        //     fontSize: 25,
-        //     fontWeight: FontWeight.bold,
-        //   ),
-        // ),
-        Expanded(
-          child: StackedCardCarousel(
-            pageController: PageController(),
-            type: StackedCardCarouselType.fadeOutStack,
-            items: List.generate(
-              BottomSheetContainer.info.length,
-              (index) => FancyCard(
-                  image: BottomSheetContainer.info[index]['details'][0]['img'],
-                  title: BottomSheetContainer.info[index]['details'][0]['name'],
-                  index: index),
+          children: [
+            const SizedBox(
+              height: 15,
             ),
-          ),
-        ),
-      ],
-    )
+            // Text(
+            //   'Peculiar Findings',
+            //   style: TextStyle(
+            //     fontSize: 25,
+            //     fontWeight: FontWeight.bold,
+            //   ),
+            // ),
+            Expanded(
+              child: StackedCardCarousel(
+                pageController: PageController(),
+                type: StackedCardCarouselType.fadeOutStack,
+                items: List.generate(
+                  BottomSheetContainer.info.length,
+                  (index) => FancyCard(
+                      image: BottomSheetContainer.info[index]['details'][0]
+                          ['img'],
+                      title: BottomSheetContainer.info[index]['details'][0]
+                          ['name'],
+                      index: index),
+                ),
+              ),
+            ),
+          ],
+        )
         //Padding(
 //         padding: const EdgeInsets.all(11),
 //         child: Column(crossAxisAlignment: CrossAxisAlignment.center, children: [

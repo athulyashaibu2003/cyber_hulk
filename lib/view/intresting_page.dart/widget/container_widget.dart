@@ -43,7 +43,7 @@ class ContainerWidget extends StatelessWidget {
                         child: Center(
                           child: Text(
                             insidetext,
-                            style: TextStyle(
+                            style: const TextStyle(
                               color: Colors.white,
                               fontSize: 14,
                             ),
@@ -63,7 +63,7 @@ class ContainerWidget extends StatelessWidget {
                         child: Center(
                           child: Text(
                             insidetext,
-                            style: TextStyle(
+                            style: const TextStyle(
                               color: Colors.white,
                               fontSize: 14,
                             ),

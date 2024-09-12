@@ -49,17 +49,18 @@ class _NewsScreenState extends State<NewsScreen> {
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
-        title: Text("News Updates for Today"),
+        title: const Text("News Updates for Today"),
         backgroundColor: ColorConstant.pantonemessage,
       ),
       body: _isLoading
-          ? Center(child: CircularProgressIndicator())
+          ? const Center(child: CircularProgressIndicator())
           : _emptyCheck
-              ? Center(child: Text("No Updates"))
+              ? const Center(child: Text("No Updates"))
               : RefreshIndicator(
                   onRefresh: newsDetails,
                   child: Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 8, vertical: 12),
+                    padding:
+                        const EdgeInsets.symmetric(horizontal: 8, vertical: 12),
                     child: ListView.separated(
                       itemCount: newsModel.list?.length ?? 0,
                       itemBuilder: (context, index) {
@@ -79,12 +80,12 @@ class _NewsScreenState extends State<NewsScreen> {
                                     newsModel.list?[index].cont ?? "",
                                     maxLines: _isExpanded ? null : 3,
                                     overflow: TextOverflow.ellipsis,
-                                    style: TextStyle(
+                                    style: const TextStyle(
                                       fontSize: 18,
                                       fontWeight: FontWeight.bold,
                                     ),
                                   ),
-                                  SizedBox(height: 8),
+                                  const SizedBox(height: 8),
                                   ClipRRect(
                                     borderRadius: BorderRadius.circular(8),
                                     child: Image.network(
@@ -96,8 +97,9 @@ class _NewsScreenState extends State<NewsScreen> {
                                       fit: BoxFit.cover,
                                       loadingBuilder:
                                           (context, child, loadingProgress) {
-                                        if (loadingProgress == null)
+                                        if (loadingProgress == null) {
                                           return child;
+                                        }
                                         return Center(
                                           child: CircularProgressIndicator(
                                             value: loadingProgress
@@ -114,13 +116,13 @@ class _NewsScreenState extends State<NewsScreen> {
                                       },
                                       errorBuilder:
                                           (context, error, stackTrace) {
-                                        return Center(
+                                        return const Center(
                                             child: Text('Image not available'));
                                       },
                                     ),
                                   ),
-                                  SizedBox(height: 8),
-                                  Text.rich(
+                                  const SizedBox(height: 8),
+                                  const Text.rich(
                                     TextSpan(
                                       text: "Read more",
                                       style: TextStyle(
@@ -137,7 +139,7 @@ class _NewsScreenState extends State<NewsScreen> {
                         );
                       },
                       separatorBuilder: (context, index) =>
-                          SizedBox(height: 14),
+                          const SizedBox(height: 14),
                     ),
                   ),
                 ),

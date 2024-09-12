@@ -41,70 +41,59 @@ class _TermsforreadState extends State<Termsforread> {
                 Text(
                   """
            
-                        1. Introduction
-1.1. These Terms and Conditions ("Terms") govern your use of the CyberHulk bot ("CyberHulk")
-provided by Avanzo Cyber Security Solutions Pvt. Ltd. . By accessing or using CyberHulk, you
-agree to be bound by these Terms.
-1.2. If you do not agree to these Terms, you may not access or use CyberHulk.
+1. Acceptance of Terms
 
-                      2. Description of CyberHulk
-2.1. CyberHulk is a cybersecurity advising bot designed to provide users with information,
-guidance, and recommendations on cybersecurity best practices, threat detection, incident
-response, and risk management.
+By downloading, installing, or using the App, User agrees to be bound by the terms and conditions of this Agreement. If User does not agree with these terms, User should not use the App.
 
-                      3. User Responsibilities
-3.1. Users are solely responsible for their use of CyberHulk and for implementing any
-recommendations or guidance provided by CyberHulk.
-3.2. Users agree to use CyberHulk in compliance with all applicable laws, regulations, and
-industry standards.
-3.3. Users acknowledge that CyberHulk is an advisory tool and that the Provider does not
-guarantee the accuracy, completeness, or effectiveness of its recommendations.
+2. App Description
 
-                      4. Limitations of Liability
-4.1. The Provider shall not be liable for any direct, indirect, incidental, special, consequential, or
-exemplary damages arising out of or in connection with the use of CyberHulk.
-4.2. The Provider makes no representations or warranties of any kind, express or implied,
-regarding the accuracy, reliability, suitability, or availability of CyberHulk.
+The Cyber Hulk is designed to provide automated cyber security assistance, and security best practice recommendations.
 
-                      5. Data Privacy
-5.1. The Provider will collect, process, and store personal data in accordance with its Privacy
-Policy.
-5.2. Users acknowledge and consent to the collection and use of their data by CyberHulk for the
-purpose of providing cybersecurity advisory services.
+3. User Responsibilities
 
-                      6. Intellectual Property
-6.1. All intellectual property rights in CyberHulk and its content belong to the provider.
-6.2. Users may not copy, reproduce, modify, or distribute CyberHulk or its content without the
-Provider's prior written consent.
+User agrees to the following:
 
-                      7. Amendments
-7.1. The Provider reserves the right to amend these Terms at any time by posting the amended
-Terms on the Provider's website or notifying Users through CyberHulk.
-7.2. Users' continued use of CyberHulk after any such amendments will constitute acceptance
-of the amended Terms.
+Use the App in compliance with all applicable laws and regulations.
+Safeguard access credentials and not share them with unauthorized individuals.
+Promptly report any suspected security incidents or vulnerabilities discovered while using the App.
+4. Provider Responsibilities
 
-                      8. Termination
-8.1. The provider may terminate or suspend a user's access to CyberHulk at any time, without
-prior notice or liability, for any reason whatsoever.
-8.2. Upon termination, users must cease all use of CyberHulk and may be required to delete or
-destroy any copies of CyberHulk in their possession.
+Provider agrees to the following:
 
-                      9. Governing Law
-9.1. These terms shall be governed by and construed in accordance with the laws of India.
-9.2. Any disputes arising out of or in connection with these Terms shall be subject to the
-exclusive jurisdiction of the courts of India.
+Maintain the security and integrity of the App to the best of its ability.
+Provide regular updates and enhancements to improve the functionality and security of the App.
+Respond promptly to reported security incidents and vulnerabilities.
+5. Data Protection and Privacy
 
-                      10. Changes to Agreement
-The provider reserves the right to modify or update this agreement at any time. The user's
-continued use of the app after any such changes constitutes acceptance of the modified terms.
+Provider will collect and process User data in accordance with its Privacy Policy, which is incorporated into this Agreement by reference.
 
-                      11. Entire Agreement
-This agreement constitutes the entire agreement between the provider and user regarding the
-use of the app and supersedes all prior agreements and understandings.
+6. Intellectual Property
 
-By using the CyberHulk, the user acknowledges that they have read, understood, and agreed to
-be bound by the terms and conditions of this agreement. However, the App will not be
-responsible for any direct or indirect damages caused without proper usage of the app.
+The App and all associated intellectual property rights belong to Provider. User may not copy, modify, or distribute the App without prior written consent from Provider.
+
+7. Limitation of Liability
+
+In no event shall Provider be liable for any indirect, incidental, special, or consequential damages arising out of or in connection with the use of the App.
+
+8. Termination
+
+Provider reserves the right to suspend or terminate User's access to the App at any time for violations of this Agreement or for security reasons.
+
+9. Governing Law
+
+This Agreement shall be governed by and construed in accordance with the laws of [Jurisdiction]. Any disputes arising out of this Agreement shall be resolved in the courts of [Jurisdiction].
+
+10. Changes to Agreement
+
+Provider reserves the right to modify or update this Agreement at any time. User's continued use of the App after any such changes constitutes acceptance of the modified terms.
+
+
+11. Entire Agreement
+
+This Agreement constitutes the entire agreement between Provider and User regarding the use of the App and supersedes all prior agreements and understandings. This app is governed by Indian law, and its use is subject to the jurisdiction of Indian courts, regardless of where the app is accessed globally. The app complies with the Information Technology Act, 2000, and other applicable Indian laws.
+
+By using the Cyber Hulk, User acknowledges that they have read, understood, and agree to be bound by the terms and conditions of this Agreement.
+
       """,
                   textAlign: TextAlign.start,
                   style: TextStyle(

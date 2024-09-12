@@ -16,9 +16,9 @@ class HomeScreen extends StatelessWidget {
           backgroundColor: const Color.fromARGB(255, 201, 115, 216),
           // floating: true,
           pinned: true,
-          actions: [
+          actions: const [
             ThemeSwitch(),
-            const SizedBox(width: 10),
+            SizedBox(width: 10),
           ],
           flexibleSpace: FlexibleSpaceBar(
             centerTitle: false,

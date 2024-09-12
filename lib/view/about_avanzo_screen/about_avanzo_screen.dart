@@ -13,7 +13,7 @@ class AboutAvanzoScreen extends StatefulWidget {
 class _AboutAvanzoScreenState extends State<AboutAvanzoScreen> {
   final Shader linearGradient = const LinearGradient(
     colors: <Color>[Colors.pink, Colors.green],
-  ).createShader(Rect.fromLTWH(0.0, 0.0, 200.0, 150.0));
+  ).createShader(const Rect.fromLTWH(0.0, 0.0, 200.0, 150.0));
   final String _text1 =
       "In today’s digital data driven economy, when brands are moulded with process automation, ‘Data protection’ is of paramount importance. Avanzo now offers consultancy in Formulating security policies for corporates, Intellectual property rights (IPR) in cyberspace, Cyber forensics, Cyber Legal Audit & IS Audit for organisations and Security Audit as per ISO standards. Cyber investigation for governments and Case presentation in front of adjudication officers (India, Arbitration).";
 
@@ -87,7 +87,7 @@ class _AboutAvanzoScreenState extends State<AboutAvanzoScreen> {
               TextButton(
                   onPressed: () {
                     Navigator.push(context,
-                        MaterialPageRoute(builder: (context) => ChatScreen()));
+                        MaterialPageRoute(builder: (context) => const ChatScreen()));
                   },
                   child: const Text(
                     "Reach us",

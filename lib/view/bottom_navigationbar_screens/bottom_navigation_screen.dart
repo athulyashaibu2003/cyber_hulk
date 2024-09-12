@@ -53,13 +53,13 @@ class _BottomNavigationScreenState extends State<BottomNavigationScreen> {
           : AppBar(
               backgroundColor: ColorConstant.pantonemessage,
               toolbarHeight: 68,
-              actions: [
-                const Text(
+              actions: const [
+                Text(
                   "Version 1.0.0",
                   style: TextStyle(color: ColorConstant.mainblack),
                 ),
                 ThemeSwitch(),
-                const SizedBox(
+                SizedBox(
                   width: 15,
                 )
               ],

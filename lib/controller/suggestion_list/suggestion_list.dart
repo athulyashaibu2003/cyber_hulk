@@ -395,6 +395,8 @@ class Suggestions {
     "Can I recover my Snapchat account if I deactivated it and want to reactivate it later?",
   ];
 
+  where(Function(dynamic item) param0) {}
+
 //   static List<String> getSuggestions(String query) {
 //     List<String> matches = [];
 //     matches.addAll(suggestionlist);

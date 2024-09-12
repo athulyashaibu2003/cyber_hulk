@@ -140,7 +140,7 @@ class _AboutCyberHulkScreenState extends State<AboutCyberHulkScreen>
             TextButton(
               onPressed: () {
                 Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => Termsforread()));
+                    MaterialPageRoute(builder: (context) => const Termsforread()));
               },
               child: const Text(
                 "Terms and conditions",
