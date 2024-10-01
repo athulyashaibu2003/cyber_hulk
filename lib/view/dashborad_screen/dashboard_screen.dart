@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:carousel_slider_plus/carousel_slider_plus.dart';
 import 'package:cyber_hulk/controller/suggestion_list/suggestion_list.dart';
 import 'package:cyber_hulk/database/database.dart';
@@ -56,10 +58,34 @@ class _DashboardScreenState extends State<DashboardScreen> {
     return data;
   }
 
+  List suggestion =[
+
+];
+  Future<void> suggestionlist() async {
+    String uri = "https://cybot.avanzosolutions.in/cybot/questions.php";
+    try {
+      res = await http.get(Uri.parse(uri));
+
+      suggestion = (jsonDecode(res.body) as List)
+          .map(
+            (json) => json,
+          )
+          .toList();
+      log(suggestion.toString());
+    } catch (e) {
+      log(e.toString());
+    }
+  }
+
+  fetchData() async {
+    await suggestionlist();
+  }
+
   @override
   void initState() {
     super.initState();
     _speech = stt.SpeechToText();
+    fetchData();
   }
 
   void _listen() async {
@@ -109,9 +135,8 @@ class _DashboardScreenState extends State<DashboardScreen> {
               child: TypeAheadField(
                 controller: askquestioncontroller,
                 suggestionsCallback: (pattern) async {
-                  print('Pattern: $pattern');
-
-                  final filteredSuggestions = Suggestions.suggestionlist
+                  // print('Pattern: $pattern');
+                  final filteredSuggestions = suggestion
                       .where((item) =>
                           item.toLowerCase().contains(pattern.toLowerCase()))
                       .toList();
