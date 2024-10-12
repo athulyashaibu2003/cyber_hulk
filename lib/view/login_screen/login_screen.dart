@@ -191,10 +191,12 @@ class _LoginScreenState extends State<LoginScreen> {
           ),
           TextButton(
               onPressed: () {
-                Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => const BottomNavigationScreen()));
+                Navigator.pushAndRemoveUntil(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => const BottomNavigationScreen()),
+                  (route) => false,
+                );
               },
               child: const Text(
                 "Guest",

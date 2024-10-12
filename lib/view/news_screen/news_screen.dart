@@ -47,11 +47,12 @@ class _NewsScreenState extends State<NewsScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        centerTitle: true,
-        title: const Text("News Updates for Today"),
-        backgroundColor: ColorConstant.pantonemessage,
-      ),
+      // appBar: AppBar(
+
+      //   centerTitle: true,
+      //   title: const Text("News Updates for Today"),
+      //   backgroundColor: ColorConstant.pantonemessage,
+      // ),
       body: _isLoading
           ? const Center(child: CircularProgressIndicator())
           : _emptyCheck
@@ -61,85 +62,101 @@ class _NewsScreenState extends State<NewsScreen> {
                   child: Padding(
                     padding:
                         const EdgeInsets.symmetric(horizontal: 8, vertical: 12),
-                    child: ListView.separated(
-                      itemCount: newsModel.list?.length ?? 0,
-                      itemBuilder: (context, index) {
-                        return Card(
-                          elevation: 5,
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(10),
-                          ),
-                          child: InkWell(
-                            onTap: _toggleExpanded,
-                            child: Padding(
-                              padding: const EdgeInsets.all(8.0),
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Text(
-                                    newsModel.list?[index].cont ?? "",
-                                    maxLines: _isExpanded ? null : 3,
-                                    overflow: TextOverflow.ellipsis,
-                                    style: const TextStyle(
-                                      fontSize: 18,
-                                      fontWeight: FontWeight.bold,
-                                    ),
-                                  ),
-                                  const SizedBox(height: 8),
-                                  ClipRRect(
-                                    borderRadius: BorderRadius.circular(8),
-                                    child: Image.network(
-                                      "https://cybot.avanzosolutions.in/cybot/newsimage/${newsModel.list?[index].filename}",
-                                      height:
-                                          MediaQuery.sizeOf(context).height *
-                                              0.25,
-                                      width: double.infinity,
-                                      fit: BoxFit.cover,
-                                      loadingBuilder:
-                                          (context, child, loadingProgress) {
-                                        if (loadingProgress == null) {
-                                          return child;
-                                        }
-                                        return Center(
-                                          child: CircularProgressIndicator(
-                                            value: loadingProgress
-                                                        .expectedTotalBytes !=
-                                                    null
-                                                ? loadingProgress
-                                                        .cumulativeBytesLoaded /
-                                                    (loadingProgress
-                                                            .expectedTotalBytes ??
-                                                        1)
-                                                : null,
+                    child: Column(
+                      children: [
+                        Text(
+                          "News Updates",
+                          style: TextStyle(
+                              fontSize: 22, fontWeight: FontWeight.bold),
+                        ),
+                        Expanded(
+                          child: ListView.separated(
+                            itemCount: newsModel.list?.length ?? 0,
+                            itemBuilder: (context, index) {
+                              return Card(
+                                elevation: 5,
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(10),
+                                ),
+                                child: InkWell(
+                                  onTap: _toggleExpanded,
+                                  child: Padding(
+                                    padding: const EdgeInsets.all(8.0),
+                                    child: Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: [
+                                        Text(
+                                          newsModel.list?[index].cont ?? "",
+                                          maxLines: _isExpanded ? null : 3,
+                                          overflow: TextOverflow.ellipsis,
+                                          style: const TextStyle(
+                                            fontSize: 18,
+                                            fontWeight: FontWeight.bold,
                                           ),
-                                        );
-                                      },
-                                      errorBuilder:
-                                          (context, error, stackTrace) {
-                                        return const Center(
-                                            child: Text('Image not available'));
-                                      },
+                                        ),
+                                        const SizedBox(height: 8),
+                                        ClipRRect(
+                                          borderRadius:
+                                              BorderRadius.circular(8),
+                                          child: Image.network(
+                                            "https://cybot.avanzosolutions.in/cybot/newsimage/${newsModel.list?[index].filename}",
+                                            height: MediaQuery.sizeOf(context)
+                                                    .height *
+                                                0.25,
+                                            width: double.infinity,
+                                            fit: BoxFit.cover,
+                                            loadingBuilder: (context, child,
+                                                loadingProgress) {
+                                              if (loadingProgress == null) {
+                                                return child;
+                                              }
+                                              return Center(
+                                                child:
+                                                    CircularProgressIndicator(
+                                                  value: loadingProgress
+                                                              .expectedTotalBytes !=
+                                                          null
+                                                      ? loadingProgress
+                                                              .cumulativeBytesLoaded /
+                                                          (loadingProgress
+                                                                  .expectedTotalBytes ??
+                                                              1)
+                                                      : null,
+                                                ),
+                                              );
+                                            },
+                                            errorBuilder:
+                                                (context, error, stackTrace) {
+                                              return const Center(
+                                                  child: Text(
+                                                      'Image not available'));
+                                            },
+                                          ),
+                                        ),
+                                        const SizedBox(height: 8),
+                                        const Text.rich(
+                                          TextSpan(
+                                            text: "Read more",
+                                            style: TextStyle(
+                                              fontSize: 16,
+                                              color: ColorConstant.darkpurple,
+                                              decoration:
+                                                  TextDecoration.underline,
+                                            ),
+                                          ),
+                                        ),
+                                      ],
                                     ),
                                   ),
-                                  const SizedBox(height: 8),
-                                  const Text.rich(
-                                    TextSpan(
-                                      text: "Read more",
-                                      style: TextStyle(
-                                        fontSize: 16,
-                                        color: ColorConstant.darkpurple,
-                                        decoration: TextDecoration.underline,
-                                      ),
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ),
+                                ),
+                              );
+                            },
+                            separatorBuilder: (context, index) =>
+                                const SizedBox(height: 14),
                           ),
-                        );
-                      },
-                      separatorBuilder: (context, index) =>
-                          const SizedBox(height: 14),
+                        ),
+                      ],
                     ),
                   ),
                 ),
