@@ -1,4 +1,7 @@
+import 'dart:developer';
+
 import 'package:cyber_hulk/controller/Fogrot_password/forgot_password.dart';
+import 'package:cyber_hulk/services/notification_services.dart';
 import 'package:cyber_hulk/utilis/Authentication.dart';
 import 'package:cyber_hulk/utilis/color_constant/color_constant.dart';
 import 'package:cyber_hulk/view/bottom_navigationbar_screens/bottom_navigation_screen.dart';
@@ -6,6 +9,7 @@ import 'package:cyber_hulk/view/signup_screen/signup_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:hive/hive.dart';
 import 'package:http/http.dart' as http;
+import 'package:permission_handler/permission_handler.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -29,6 +33,11 @@ class _LoginScreenState extends State<LoginScreen> {
     super.initState();
     createOpenBox();
     passwordVisible = true;
+    serverPolling();
+  }
+
+  serverPolling() async {
+    await ServerPollingService().startPolling();
   }
 
   void createOpenBox() async {
@@ -182,6 +191,11 @@ class _LoginScreenState extends State<LoginScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
+      // floatingActionButton: FloatingActionButton(onPressed: () {
+      //   //     await requestNotificationPermission(context);
+      //   NotificationServices()
+      //       .showNotification(title: "Plain Title", body: "Plain Body");
+      // }),
       appBar: AppBar(
         backgroundColor: ColorConstant.pantonebackground,
         actions: [
@@ -190,16 +204,19 @@ class _LoginScreenState extends State<LoginScreen> {
             width: 15,
           ),
           TextButton(
-              onPressed: () {
-                Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => const BottomNavigationScreen()));
-              },
-              child: const Text(
-                "Guest",
-                style: TextStyle(color: ColorConstant.darkpurple),
-              ))
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => const BottomNavigationScreen(),
+                ),
+              );
+            },
+            child: const Text(
+              "Guest",
+              style: TextStyle(color: ColorConstant.darkpurple),
+            ),
+          ),
         ],
       ),
       body: SingleChildScrollView(
@@ -232,19 +249,20 @@ class _LoginScreenState extends State<LoginScreen> {
                   Padding(
                     padding: const EdgeInsets.all(12),
                     child: TextFormField(
-                        style: const TextStyle(color: Colors.black),
-                        controller: loginusernamecontroller,
-                        decoration: const InputDecoration(
-                            hintText: "Username",
-                            hintStyle: TextStyle(color: Colors.black54),
-                            border: OutlineInputBorder()),
-                        validator: (value) {
-                          if (value != null && value.length >= 5) {
-                            return null;
-                          } else {
-                            return "Username is Required";
-                          }
-                        }),
+                      style: const TextStyle(color: Colors.black),
+                      controller: loginusernamecontroller,
+                      decoration: const InputDecoration(
+                          hintText: "Username",
+                          hintStyle: TextStyle(color: Colors.black54),
+                          border: OutlineInputBorder()),
+                      validator: (value) {
+                        if (value != null && value.length >= 5) {
+                          return null;
+                        } else {
+                          return "Username is Required";
+                        }
+                      },
+                    ),
                   ),
                   const SizedBox(
                     height: 10,
@@ -389,22 +407,21 @@ class _LoginScreenState extends State<LoginScreen> {
                         style: TextStyle(color: ColorConstant.mainblack),
                       ),
                       TextButton(
-                          onPressed: () {
-                            Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) =>
-                                        const SignUpScreen()));
-                          },
-                          child: const Text(
-                            "Signup",
-                            style: TextStyle(
-                                color: ColorConstant.darkpurple,
-                                decoration: TextDecoration.underline),
-                          ))
+                        onPressed: () {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => const SignUpScreen()));
+                        },
+                        child: const Text(
+                          "Signup",
+                          style: TextStyle(
+                              color: ColorConstant.darkpurple,
+                              decoration: TextDecoration.underline),
+                        ),
+                      ),
                     ],
                   ),
-
                   // const SizedBox(
                   //   height: 28,
                   // ),
@@ -421,11 +438,73 @@ class _LoginScreenState extends State<LoginScreen> {
                         TextStyle(fontSize: 10, color: ColorConstant.mainwhite),
                   ),
                 ),
-              )
+              ),
             ],
           ),
         ),
       ),
     );
+  }
+
+  Future<void> requestNotificationPermission(BuildContext context) async {
+    // Check the current permission status
+    var status = await Permission.notification.status;
+
+    log('=================####$status');
+    log('=================####${status.isDenied}');
+    log('=================####${status.isPermanentlyDenied}');
+
+    // If permission is denied or permanently denied, ask the user for permission
+    if (status.isDenied || status.isPermanentlyDenied) {
+      bool shouldRequest = await showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return AlertDialog(
+            title: Text("Allow Notifications"),
+            content: Text(
+                "This app needs notification permissions to send you alerts."),
+            actions: [
+              TextButton(
+                child: Text("Deny"),
+                onPressed: () {
+                  Navigator.of(context).pop(false); // User denied the request
+                },
+              ),
+              TextButton(
+                child: Text("Allow"),
+                onPressed: () {
+                  Navigator.of(context).pop(true); // User allowed the request
+                },
+              ),
+            ],
+          );
+        },
+      );
+
+      // If the user chose to allow, request the permission
+      if (shouldRequest == true) {
+        var newStatus = await Permission.notification.request();
+        if (newStatus.isGranted) {
+          log('Notification permission granted');
+          // You can now proceed with notifications
+        } else if (newStatus.isPermanentlyDenied) {
+          log('Notification permission permanently denied');
+          // Open settings to change permission manually
+          bool opened = await openAppSettings();
+          if (opened) {
+            log('App settings opened');
+          } else {
+            log('Failed to open app settings');
+          }
+        } else {
+          log('Notification permission denied or restricted');
+          // Handle if the permission is denied or restricted
+        }
+      }
+    }
+    // else if (status.isGranted) {
+    //   log('Notification permission already granted');
+    //   // Proceed with notifications
+    // }
   }
 }

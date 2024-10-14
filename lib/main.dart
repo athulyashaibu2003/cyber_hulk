@@ -1,3 +1,4 @@
+import 'package:cyber_hulk/services/notification_services.dart';
 import 'package:cyber_hulk/view/splash_screen/splash_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/hive_flutter.dart';
@@ -6,7 +7,8 @@ import 'package:provider/provider.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-
+  final NotificationServices notificationServices = NotificationServices();
+  await notificationServices.initNotification();
   await Hive.initFlutter();
   Box box = await Hive.openBox('logindata');
   bool isLoggedIn = box.get('isLoggedIn', defaultValue: false);
@@ -29,13 +31,14 @@ class MyApp extends StatelessWidget {
     final themeProvider = Provider.of<ThemeProvider>(context);
 
     return MaterialApp(
-        debugShowCheckedModeBanner: false,
-        themeMode: themeProvider.themeMode,
-        theme: ThemeData.light(),
-        darkTheme: ThemeData.dark(),
-        home: SplashScreen(
-          isLoggedIn: isLoggedIn,
-        ));
+      debugShowCheckedModeBanner: false,
+      themeMode: themeProvider.themeMode,
+      theme: ThemeData.light(),
+      darkTheme: ThemeData.dark(),
+      home: SplashScreen(
+        isLoggedIn: isLoggedIn,
+      ),
+    );
   }
 }
 
