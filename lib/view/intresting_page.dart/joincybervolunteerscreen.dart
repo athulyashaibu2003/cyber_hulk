@@ -1,3 +1,4 @@
+import 'dart:convert';
 import 'dart:developer';
 import 'dart:io';
 
@@ -26,8 +27,8 @@ class _JoinCyberVolunteerScreenState extends State<JoinCyberVolunteerScreen> {
   TextEditingController highestqualificationnamecontroller =
       TextEditingController();
   TextEditingController idproofcontroller = TextEditingController();
-  // TextEditingController idproofnamecontroller = TextEditingController();
-  // TextEditingController uploadedidproofcontroller = TextEditingController();
+  TextEditingController knowaboutuscontroller = TextEditingController();
+  TextEditingController otherorganisationscontroller = TextEditingController();
   final _formkey = GlobalKey<FormState>();
   String? validateEmail(String? email) {
     RegExp emailRegex = RegExp(
@@ -62,87 +63,180 @@ class _JoinCyberVolunteerScreenState extends State<JoinCyberVolunteerScreen> {
     "Other",
   ];
 
+  File? documentFile;
   // Function to pick a file
   Future<void> pickFile() async {
     FilePickerResult? result = await FilePicker.platform.pickFiles();
-
     if (result != null) {
       setState(() {
+        documentFile = File(result.files.single.path!);
         uploadedFilePath = result.files.single.path;
       });
     }
   }
 
-  Future<void> insertrecord() async {
-    if (firstnamecontroller.text != "" ||
-        lastnamecontroller.text != "" ||
-        mailidcontroller.text != "" ||
-        phnumbercontroller.text != "" ||
-        agecontroller.text != "" ||
-        selectedQualification != "" ||
-        highestqualificationnamecontroller.text != "" ||
-        selectedIdProof != "" ||
-        idproofcontroller.text != "" ||
-        uploadedFilePath != "") {
-      try {
-        String uri =
-            "https://cybot.avanzosolutions.in/cybot/cyber_volunteers.php";
-        var res = await http.post(Uri.parse(uri), body: {
-          "firstnamecontroller": firstnamecontroller.text,
-          "lastnamecontroller": lastnamecontroller.text,
-          "mailidcontroller": mailidcontroller.text,
-          "phnumbercontroller": phnumbercontroller.text,
-          "agecontroller": agecontroller.text,
-          "qualificationcontroller": selectedQualification,
-          "enteredqualificationcontroller": selectedQualification == "Other"
-              ? highestqualificationnamecontroller.text
-              : null,
-          "idnamecontroller": selectedIdProof,
-          "idnocontroller": idproofcontroller.text,
-          "documentnamecontroller": uploadedFilePath?.split('/').last,
-        });
-        print(firstnamecontroller.text);
-        print(lastnamecontroller.text);
-        print(mailidcontroller.text);
-        print(phnumbercontroller.text);
-        print(agecontroller.text);
-        print(selectedQualification);
-        print(highestqualificationcontroller.text);
-        print(selectedIdProof);
-        print(idproofcontroller.text);
-        print(uploadedFilePath?.split('/').last);
-        log(res.body);
-        var response = "SUCCESS";
-        // print(response);
-        var resp = "error";
+  Future<void> insertrecord(
+      {required String fname,
+      required String lname,
+      required String mail,
+      required String phn,
+      required String age,
+      required String qualification,
+      required String enteredQualification,
+      required String idname,
+      required String idno,
+      required File imageFile,
+      required File documentFile,
+      required String otherorganization,
+      required String knowaboutus}) async {
+    var request = http.MultipartRequest(
+      'POST',
+      Uri.parse('https://cybot.avanzosolutions.in/cybot/cyber_volunteers.php'),
+    );
 
-        if (res.body == response) {
-          print(res.body);
-          print("Record inserted");
-          Navigator.push(
-            context,
-            MaterialPageRoute(
-                builder: (context) => AlertDialog(
-                      content: Text("Registered Successfully"),
-                    )),
-          );
-        }
-        if (res.body == resp) {
-          Navigator.push(
-            context,
-            MaterialPageRoute(
-                builder: (context) => AlertDialog(
-                      content: Text("Please try again"),
-                    )),
-          );
-        }
-      } catch (e) {
-        print(e);
+    // Add form fields
+    request.fields['firstnamecontroller'] = fname;
+    request.fields['lastnamecontroller'] = lname;
+    request.fields['mailidcontroller'] = mail;
+    request.fields['phnumbercontroller'] = phn;
+    request.fields['agecontroller'] = age;
+    request.fields['qualificationcontroller'] = qualification;
+    request.fields['enteredqualificationcontroller'] = enteredQualification;
+    request.fields['idnamecontroller'] = idname;
+    request.fields['idnocontroller'] = idno;
+    request.fields['otherorganisationscontroller'] = otherorganization;
+    request.fields['knowaboutuscontroller'] = knowaboutus;
+
+    // Add the file as multipart
+    request.files.add(await http.MultipartFile.fromPath(
+      'image',
+      imageFile.path,
+    ));
+
+    request.files.add(await http.MultipartFile.fromPath(
+      'files',
+      documentFile.path,
+    ));
+
+    // Send the request
+    try {
+      var response = await request.send();
+
+      log(response.statusCode.toString());
+      var responses = await response.stream.bytesToString();
+      log(responses);
+      var res = "SUCCESS";
+      // print(response);
+      var resp = "error";
+
+      if (responses == res) {
+        print("Record inserted");
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+              builder: (context) => AlertDialog(
+                    content: Text("Registered Successfully"),
+                  )),
+        );
+      } else {
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+              builder: (context) => AlertDialog(
+                    content: Text("Please try again"),
+                  )),
+        );
       }
-    } else {
-      print("please fill all fields");
+
+      // if (response.statusCode == 200) {
+      //   var responseBody = await response.stream.bytesToString();
+      //   var jsonResponse = jsonDecode(responseBody);
+      //   log(responseBody);
+      //   log(jsonResponse);
+      //   // print('Response: $jsonResponse');
+
+      //   // if (jsonResponse['status'] == 'SUCCESS') {
+      //   //   print('Data uploaded successfully');
+      //   // } else {
+      //   //   print('Failed: ${jsonResponse['message']}');
+      //   // }
+      // } else {
+      //   print('Failed to send request');
+      // }
+    } catch (e) {
+      print('Error: $e');
     }
   }
+
+  // Future<void> insertrecord() async {
+  //   if (firstnamecontroller.text != "" ||
+  //       lastnamecontroller.text != "" ||
+  //       mailidcontroller.text != "" ||
+  //       phnumbercontroller.text != "" ||
+  //       agecontroller.text != "" ||
+  //       selectedQualification != "" ||
+  //       highestqualificationnamecontroller.text != "" ||
+  //       selectedIdProof != "" ||
+  //       idproofcontroller.text != "" ||
+  //       uploadedFilePath != "") {
+  //     try {
+  //       String uri =
+  //           "https://cybot.avanzosolutions.in/cybot/cyber_volunteers.php";
+  //       var res = await http.post(Uri.parse(uri), body: {
+  //         "firstnamecontroller": firstnamecontroller.text,
+  //         "lastnamecontroller": lastnamecontroller.text,
+  //         "mailidcontroller": mailidcontroller.text,
+  //         "phnumbercontroller": phnumbercontroller.text,
+  //         "agecontroller": agecontroller.text,
+  //         "qualificationcontroller": selectedQualification,
+  //         "enteredqualificationcontroller":
+  //             highestqualificationnamecontroller.text,
+  //         "idnamecontroller": selectedIdProof,
+  //         "idnocontroller": idproofcontroller.text,
+  //         "documentnamecontroller": uploadedFilePath?.split('/').last,
+  //       });
+  //       print(firstnamecontroller.text);
+  //       print(lastnamecontroller.text);
+  //       print(mailidcontroller.text);
+  //       print(phnumbercontroller.text);
+  //       print(agecontroller.text);
+  //       print(selectedQualification);
+  //       print(highestqualificationcontroller.text);
+  //       print(selectedIdProof);
+  //       print(idproofcontroller.text);
+  //       print(uploadedFilePath?.split('/').last);
+  //       log(res.body);
+  //   var response = "SUCCESS";
+  //   // print(response);
+  //   var resp = "error";
+
+  //   if (res.body == response) {
+  //     print(res.body);
+  //     print("Record inserted");
+  //     Navigator.push(
+  //       context,
+  //       MaterialPageRoute(
+  //           builder: (context) => AlertDialog(
+  //                 content: Text("Registered Successfully"),
+  //               )),
+  //     );
+  //   }
+  //   if (res.body == resp) {
+  //     Navigator.push(
+  //       context,
+  //       MaterialPageRoute(
+  //           builder: (context) => AlertDialog(
+  //                 content: Text("Please try again"),
+  //               )),
+  //     );
+  //   }
+  // } catch (e) {
+  //       print(e);
+  //     }
+  //   } else {
+  //     print("please fill all fields");
+  //   }
+  // }
 
   File? _profileImage;
   final ImagePicker _picker = ImagePicker();
@@ -318,7 +412,7 @@ class _JoinCyberVolunteerScreenState extends State<JoinCyberVolunteerScreen> {
                                 borderRadius: BorderRadius.circular(15),
                               )),
                           validator: (value) {
-                            if (value != null && value.length == 18) {
+                            if (value != null && value.isNotEmpty) {
                               return null;
                             } else {
                               return "Please Enter your Age";
@@ -445,6 +539,41 @@ class _JoinCyberVolunteerScreenState extends State<JoinCyberVolunteerScreen> {
                           ),
                         ),
                       const SizedBox(height: 20),
+                      TextFormField(
+                        controller: otherorganisationscontroller,
+                        decoration: InputDecoration(
+                            hintText: 'Are you part of any other organisation*',
+                            labelText:
+                                "Are you part of any other organisation*",
+                            fillColor: Colors.grey[200],
+                            focusColor: Colors.grey,
+                            filled: true,
+                            border: OutlineInputBorder(
+                              borderSide: BorderSide.none,
+                              borderRadius: BorderRadius.circular(15),
+                            )),
+                        //     validator: validateEmail,
+                      ),
+                      SizedBox(
+                        height: 20,
+                      ),
+                      TextFormField(
+                        controller: knowaboutuscontroller,
+                        decoration: InputDecoration(
+                            hintText: 'How did u come to know about us?*',
+                            labelText: "How did u come to know about us?*",
+                            fillColor: Colors.grey[200],
+                            focusColor: Colors.grey,
+                            filled: true,
+                            border: OutlineInputBorder(
+                              borderSide: BorderSide.none,
+                              borderRadius: BorderRadius.circular(15),
+                            )),
+                        //  validator: validateEmail,
+                      ),
+                      SizedBox(
+                        height: 20,
+                      ),
 
                       // Button to upload the ID file
                       ElevatedButton.icon(
@@ -465,24 +594,41 @@ class _JoinCyberVolunteerScreenState extends State<JoinCyberVolunteerScreen> {
                       SizedBox(
                         height: 20,
                       ),
+
                       ElevatedButton(
                           style: ButtonStyle(
                               fixedSize: WidgetStateProperty.all(Size(300, 60)),
                               backgroundColor: WidgetStateProperty.all(
                                   ColorConstant.darkpurple)),
                           onPressed: () async {
-                            bool profile = false;
+                            // bool profile = false;
                             if (_formkey.currentState!.validate()) {
-                              if (_profileImage != null) {
-                                profile = true;
-                              } else {
-                                profile = false;
-                                imageName = "0";
-                              }
-                              await insertrecord();
-                              if (profile) {
-                                await uploadImage(_profileImage!);
-                              }
+                              insertrecord(
+                                  fname: firstnamecontroller.text,
+                                  lname: lastnamecontroller.text,
+                                  mail: mailidcontroller.text,
+                                  phn: phnumbercontroller.text,
+                                  age: agecontroller.text,
+                                  qualification: selectedQualification ?? "",
+                                  enteredQualification:
+                                      highestqualificationcontroller.text,
+                                  idname: selectedIdProof ?? '',
+                                  idno: idproofcontroller.text,
+                                  imageFile: _profileImage!,
+                                  documentFile: documentFile!,
+                                  otherorganization:
+                                      otherorganisationscontroller.text,
+                                  knowaboutus: knowaboutuscontroller.text);
+                              // if (_profileImage != null) {
+                              //   profile = true;
+                              // } else {
+                              //   profile = false;
+                              //   imageName = "0";
+                              // }
+                              // await insertrecord();
+                              // if (profile) {
+                              //   await uploadImage(_profileImage!);
+                              // }
                               //  print("Form submitted");
                             } else {
                               print("Form is invalid");
