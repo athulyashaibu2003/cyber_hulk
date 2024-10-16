@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class ChatScreen extends StatefulWidget {
   const ChatScreen({super.key});
@@ -13,7 +14,8 @@ class _ChatScreenState extends State<ChatScreen> {
   final TextEditingController _controller = TextEditingController();
   final List<Message> _messages = [
     Message(
-        text: 'Welcome to Avanzo chat! How can I help you today?',
+        text:
+            'Welcome to Avanzo chat! How can I help you today? If you have many queries, you can message us on WhatsApp by clicking the link below:',
         isUser: false,
         timestamp: DateTime.now()),
   ];
@@ -22,27 +24,26 @@ class _ChatScreenState extends State<ChatScreen> {
     'what is avanzo?':
         'We are in a rapid digital transformation phase where everyone – ‘Grocer to Tailor to Hair stylist to MSMEs’ and Corporates – All shifting to the Digital platform. Every business now is going to be governed by Data. Hence, in this “Data Driven Economy”, “Data Security” is of paramount importance to any organization irrespective of its size.',
     'who is the founder of avanzo?':
-        'Avanzo was founded by Pattathil Dhanya Menon and the cofounders where late venugopal menon and late santhosh vk in 2010',
+        'Avanzo was founded by Pattathil Dhanya Menon and the cofounders were late Venugopal Menon and late Santhosh VK in 2010.',
     'is avanzo a cyber security company?':
-        'Avanzo is a cybersecurity company based on Thrissur,kerala.it works on the platforms of cybersecurity audit,vulnerability assessment and penetration testing',
+        'Avanzo is a cybersecurity company based in Thrissur, Kerala. It works on the platforms of cybersecurity audit, vulnerability assessment, and penetration testing.',
     'when did avanzo establish?': '2010',
     'where is avanzo located?': 'Thrissur, Kerala',
     'is avanzo customer friendly?':
-        'Yes Avanzo is customer friendly and our focus is on delivering our best in the interest of our clients',
+        'Yes, Avanzo is customer friendly and our focus is on delivering our best in the interest of our clients.',
     'how can you contact avanzo?':
         'Email: avanzonet@gmail.com\nWebsite: https://avanzo.in\nPhone: +91 7356 1111 28',
     'how many staff are in avanzo?':
-        'We have a good team size in our various verticals and we are growing every day',
-    'is avanzo a legal company?': 'It'
-        's a techno legal company. We provide legal consultation in cyber space',
-    'does avanzo have any vacancy?':
-        'Pls reachout and sent your CV to jobs@avanzo.in',
-    'is it safe to consult avanzo?': 'Very safe',
+        'We have a good team size and we are growing every day.',
+    'is avanzo a legal company?':
+        'It\'s a techno-legal company. We provide legal consultation in cyberspace.',
+    'does avanzo have any vacancy?': 'Please send your CV to jobs@avanzo.in.',
+    'is it safe to consult avanzo?': 'Very safe.',
     'is avanzo a government authorised company?':
-        'We are a private limited company with 15yrs of experience',
-    'is the avanzo meeting confidential?': 'Yes',
+        'We are a private limited company with 15 years of experience.',
+    'is the avanzo meeting confidential?': 'Yes.',
     'why avanzo?':
-        'At Avanzo,we understand that the rapid evolution of technology brings with it a myriad of challenges and concerns. That’s why we’ve established a dedicated helpline to assist individuals facing cyber-related issues.',
+        'At Avanzo, we understand that the rapid evolution of technology brings with it a myriad of challenges and concerns. That’s why we’ve established a dedicated helpline to assist individuals facing cyber-related issues.',
   };
 
   final List<String> _options = [
@@ -89,6 +90,28 @@ class _ChatScreenState extends State<ChatScreen> {
         );
       });
     });
+  }
+
+  // Future<void> _launchWhatsApp() async {
+  //   final Uri url = Uri.parse('https://wa.link/siezai');
+  //   print('Trying to launch: $url');
+  //   if (await canLaunchUrl(url)) {
+  //     print('Can launch $url');
+  //     await launchUrl(url, mode: LaunchMode.externalApplication);
+  //   } else {
+  //     print('Cannot launch $url');
+  //     throw 'Could not launch $url';
+  //   }
+  // }
+
+  Future<void> _launchWhatsApp(Uri url) async {
+    if (!await launchUrl(
+      url,
+      mode: LaunchMode.externalApplication,
+      // browserConfiguration: const BrowserConfiguration(showTitle: true),
+    )) {
+      throw Exception('Could not launch $url');
+    }
   }
 
   @override
@@ -151,13 +174,27 @@ class _ChatScreenState extends State<ChatScreen> {
                           ),
                           padding: const EdgeInsets.symmetric(
                               horizontal: 15, vertical: 10),
-                          child: Text(_messages[index].text,
-                              style: GoogleFonts.poppins(
-                                textStyle: const TextStyle(
-                                    color: Colors.black,
-                                    fontSize: 16,
-                                    fontWeight: FontWeight.w400),
-                              )),
+                          child: Column(
+                            children: [
+                              Text(_messages[index].text,
+                                  style: GoogleFonts.poppins(
+                                    textStyle: const TextStyle(
+                                        color: Colors.black,
+                                        fontSize: 16,
+                                        fontWeight: FontWeight.w400),
+                                  )),
+                              // If this is the welcome message, add the link button
+                              if (_messages[index].text.contains('WhatsApp'))
+                                TextButton(
+                                  onPressed: () => _launchWhatsApp(
+                                      Uri.parse('https://wa.link/6zeah7')),
+                                  child: const Text(
+                                    'Click here to message on WhatsApp',
+                                    style: TextStyle(color: Colors.blue),
+                                  ),
+                                ),
+                            ],
+                          ),
                         ),
                         const SizedBox(height: 5),
                         Text(
@@ -217,9 +254,7 @@ class _ChatScreenState extends State<ChatScreen> {
                             option,
                             style: GoogleFonts.poppins(
                               textStyle: const TextStyle(
-                                  //  color: Colors.black,
-                                  fontSize: 16,
-                                  fontWeight: FontWeight.w400),
+                                  fontSize: 16, fontWeight: FontWeight.w400),
                             ),
                           ),
                           onPressed: () {

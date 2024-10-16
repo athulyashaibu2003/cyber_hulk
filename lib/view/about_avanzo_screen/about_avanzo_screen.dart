@@ -86,11 +86,13 @@ class _AboutAvanzoScreenState extends State<AboutAvanzoScreen> {
               ),
               TextButton(
                   onPressed: () {
-                    Navigator.push(context,
-                        MaterialPageRoute(builder: (context) => const ChatScreen()));
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => const ChatScreen()));
                   },
                   child: const Text(
-                    "Reach us",
+                    "Chat with us",
                     style: TextStyle(
                         fontSize: 20, decoration: TextDecoration.underline),
                   ))

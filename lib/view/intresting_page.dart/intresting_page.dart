@@ -1,11 +1,12 @@
-import 'package:cyber_hulk/main.dart';
-import 'package:cyber_hulk/utilis/color_constant/color_constant.dart';
-import 'package:cyber_hulk/utilis/dummy_db.dart/dummy_db.dart';
-import 'package:cyber_hulk/view/facts_details_screen/facts_details_screen.dart';
+import 'package:cyber_hulk/view/intresting_page.dart/joincybervolunteerscreen.dart';
+import 'package:cyber_hulk/view/reach_to_us_screen/reach_to_us_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'package:stacked_card_carousel/stacked_card_carousel.dart';
+import 'package:cyber_hulk/utilis/color_constant/color_constant.dart';
+import 'package:cyber_hulk/utilis/dummy_db.dart/dummy_db.dart';
+import 'package:cyber_hulk/view/facts_details_screen/facts_details_screen.dart';
 
 class InterestingPage extends StatefulWidget {
   const InterestingPage({super.key});
@@ -55,97 +56,83 @@ class _InterestingPageState extends State<InterestingPage> {
         index: 5,
       ),
     ];
+
     return Scaffold(
-        appBar: AppBar(),
-        // backgroundColor: Colors.purple,
-        body: Column(
-          children: [
-            const SizedBox(
-              height: 15,
-            ),
-            // Text(
-            //   'Peculiar Findings',
-            //   style: TextStyle(
-            //     fontSize: 25,
-            //     fontWeight: FontWeight.bold,
-            //   ),
-            // ),
-            Expanded(
-              child: StackedCardCarousel(
-                pageController: PageController(),
-                type: StackedCardCarouselType.fadeOutStack,
-                items: List.generate(
-                  BottomSheetContainer.info.length,
-                  (index) => FancyCard(
-                      image: BottomSheetContainer.info[index]['details'][0]
-                          ['img'],
-                      title: BottomSheetContainer.info[index]['details'][0]
-                          ['name'],
-                      index: index),
+      //   appBar: AppBar(),
+      body: Column(
+        children: [
+          //  const SizedBox(height: 15),
+          Expanded(
+            child: StackedCardCarousel(
+              pageController: PageController(),
+              type: StackedCardCarouselType.fadeOutStack,
+              items: List.generate(
+                BottomSheetContainer.info.length,
+                (index) => FancyCard(
+                  image: BottomSheetContainer.info[index]['details'][0]['img'],
+                  title: BottomSheetContainer.info[index]['details'][0]['name'],
+                  index: index,
                 ),
               ),
             ),
-          ],
-        )
-        //Padding(
-//         padding: const EdgeInsets.all(11),
-//         child: Column(crossAxisAlignment: CrossAxisAlignment.center, children: [
-//           SizedBox(
-//             height: 10,
-//           ),
-//           Row(
-//             mainAxisAlignment: MainAxisAlignment.center,
-//             children: [
-//               Container(
-//                 height: 50,
-//                 width: 50,
-//                 decoration: BoxDecoration(
-//                     image: DecorationImage(
-//                         image: NetworkImage(
-//                             "https://static.vecteezy.com/system/resources/previews/023/751/040/non_2x/isolated-cute-happy-brain-cartoon-character-with-an-idea-illustration-vector.jpg"))),
-//               ),
-//               Text("Interesting Facts",
-//                   style: TextStyle(
-//                       color: ColorConstant.darkpurple,
-//                       fontSize: 30,
-//                       fontWeight: FontWeight.bold)),
-//             ],
-//           ),
-//           SizedBox(
-//             height: 10,
-//           ),
-//           Expanded(
-//             child: Padding(
-//               padding: const EdgeInsets.symmetric(horizontal: 20),
-//               child: GridView.builder(
-//                 itemCount: BottomSheetContainer.info.length,
-//                 gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-//                     crossAxisCount: 2,
-//                     mainAxisSpacing: 30,
-//                     crossAxisSpacing: 30,
-//                     mainAxisExtent: MediaQuery.sizeOf(context).height * .2),
-//                 itemBuilder: (context, index) => InkWell(
-//                   onTap: () {
-//                     FactsBottomSheet(context, index);
-//                   },
-//                   child: ContainerWidget(
-//                     image: BottomSheetContainer.info[index]['details'][0]
-//                         ['img'],
-//                     insidetext: BottomSheetContainer.info[index]['details'][0]
-//                         ['name'],
-//                     index: index,
-//                     width: MediaQuery.sizeOf(context).width * .22,
-//                   ),
-//                 ),
-//               ),
-//             ),
-//           ),
-//       ),
-//     );
-//   }
-// }
+          ),
+        ],
+      ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
+      floatingActionButton: Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Padding(
+            padding: const EdgeInsets.all(16.0),
+            child: FloatingActionButton(
+              tooltip: "Chat with Us",
+              child: const Icon(
+                Icons.chat,
+                color: ColorConstant.darkpurple,
+              ),
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => ChatScreen(),
+                  ),
+                );
+              },
 
-        );
+              backgroundColor: ColorConstant
+                  .pantonebackground, // Customize background color if needed
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.all(16.0),
+            child: FloatingActionButton.extended(
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => JoinCyberVolunteerScreen(),
+                  ),
+                );
+              },
+              icon: Icon(
+                Icons.volunteer_activism,
+                color: ColorConstant.darkpurple,
+              ),
+              label: const Text(
+                "Join as Volunteer",
+                style: TextStyle(
+                  color: Colors.black, // Customize text color if needed
+                  fontSize: 12,
+                ),
+              ),
+              tooltip: "Join as Cyber Volunteer",
+              backgroundColor: ColorConstant
+                  .pantonebackground, // Customize background color if needed
+            ),
+          ),
+        ],
+      ),
+    );
   }
 }
 
@@ -174,10 +161,11 @@ class FancyCard extends StatelessWidget {
               height: 250,
               clipBehavior: Clip.antiAlias,
               decoration: const BoxDecoration(
-                  // border: Border.all(color: Colors.black),
-                  borderRadius: BorderRadius.only(
-                      topLeft: Radius.circular(50),
-                      bottomRight: Radius.circular(100))),
+                borderRadius: BorderRadius.only(
+                  topLeft: Radius.circular(50),
+                  bottomRight: Radius.circular(100),
+                ),
+              ),
               child: Image.asset(
                 image,
                 fit: BoxFit.cover,
@@ -186,72 +174,27 @@ class FancyCard extends StatelessWidget {
             Text(
               title,
               style: GoogleFonts.poppins(
-                  textStyle: const TextStyle(
-                fontSize: 16,
-                fontWeight: FontWeight.w600,
-              )),
+                textStyle: const TextStyle(
+                  fontSize: 16,
+                  fontWeight: FontWeight.w600,
+                ),
+              ),
             ),
             OutlinedButton(
-                child: const Text("Learn more"),
-                onPressed: () {
-                  // FactsBottomSheet(context, index);
-                  Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => FactsDetailsScreen(index: index),
-                      ));
-
-                  print("Button was tapped");
-                }),
+              child: const Text("Learn more"),
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => FactsDetailsScreen(index: index),
+                  ),
+                );
+                print("Button was tapped");
+              },
+            ),
           ],
         ),
       ),
     );
   }
-}
-
-Future<dynamic> FactsBottomSheet(BuildContext context, int index) {
-  return showModalBottomSheet(
-      context: context,
-      isScrollControlled: true,
-      useSafeArea: true,
-      builder: (context) {
-        return Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Expanded(
-              child: ListView.separated(
-                itemCount: BottomSheetContainer.info[index]['des'].length,
-                itemBuilder: (context, check) {
-                  // int questionLength =
-                  //     BottomSheetContainer.info[0][check].length;
-                  return ListTile(
-                    title: Text(
-                      // textAlign: TextAlign.justify,
-                      BottomSheetContainer.info[index]['des'][check]
-                          ['question'],
-                      style:
-                          const TextStyle(fontSize: 30, color: Colors.purple),
-                    ),
-                    subtitle: Text(
-                      textAlign: TextAlign.justify,
-                      BottomSheetContainer.info[index]['des'][check]['answer'],
-                      style: TextStyle(
-                          color:
-                              Provider.of<ThemeProvider>(context).themeMode ==
-                                      ThemeMode.dark
-                                  ? ColorConstant.mainwhite
-                                  : ColorConstant.mainblack,
-                          fontSize: 17),
-                    ),
-                  );
-                },
-                separatorBuilder: (context, index) => const SizedBox(
-                  height: 10,
-                ),
-              ),
-            )
-          ],
-        );
-      });
 }
