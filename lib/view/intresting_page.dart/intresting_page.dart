@@ -83,10 +83,11 @@ class _InterestingPageState extends State<InterestingPage> {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Padding(
-            padding: const EdgeInsets.all(16.0),
+            padding: EdgeInsets.all(16.0),
             child: FloatingActionButton(
               tooltip: "Chat with Us",
-              child: const Icon(
+              heroTag: 'fab1    ',
+              child: Icon(
                 Icons.chat,
                 color: ColorConstant.darkpurple,
               ),
@@ -106,6 +107,7 @@ class _InterestingPageState extends State<InterestingPage> {
           Padding(
             padding: const EdgeInsets.all(16.0),
             child: FloatingActionButton.extended(
+              heroTag: 'fab2',
               onPressed: () {
                 Navigator.push(
                   context,
