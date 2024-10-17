@@ -74,14 +74,15 @@ class ServerPollingService {
       // var res = await http.get(Uri.parse(url));
       var json = jsonDecode(res.body) as Map<String, dynamic>;
       newsModel = NewsModel.fromJson(json);
-      log(newsModel.list?[length].filename ?? "");
+      log(newsModel.list?.first.filename ?? "");
       if (res.statusCode == 200) {
         // final data = json.decode(res.body);
         if (newsModel.list!.length > length) {
+          
           // Show notification when new data is found
           await notificationServices.showNotification(
-            title: newsModel.list?[length - 1].filename,
-            body: newsModel.list?[length - 1].cont,
+            title: newsModel.list?.first.filename,
+            body: newsModel.list?.first.cont,
           );
         }
       } else {
