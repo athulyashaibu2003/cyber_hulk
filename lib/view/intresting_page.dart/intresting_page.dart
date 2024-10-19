@@ -1,4 +1,5 @@
-import 'package:cyber_hulk/view/intresting_page.dart/joincybervolunteerscreen.dart';
+import 'package:cyber_hulk/view/join%20cyber%20volunteer/joincybervolunteerscreen.dart';
+import 'package:cyber_hulk/view/join%20cyber%20volunteer/terms_and_conditions_cybervolunteer.dart';
 import 'package:cyber_hulk/view/reach_to_us_screen/reach_to_us_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -112,7 +113,7 @@ class _InterestingPageState extends State<InterestingPage> {
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (context) => JoinCyberVolunteerScreen(),
+                    builder: (context) => TermsConditionsforCybervolunteer(),
                   ),
                 );
               },
